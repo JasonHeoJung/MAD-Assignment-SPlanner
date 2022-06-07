@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner">
         <activity
+            android:name=".addDetails"
+            android:exported="false" />
+        <activity
+            android:name=".timetable_details"
+            android:exported="false" />
+        <activity
+            android:name=".Timetable"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
