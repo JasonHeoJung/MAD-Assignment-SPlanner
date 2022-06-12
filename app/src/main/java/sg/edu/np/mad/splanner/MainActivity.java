@@ -1,18 +1,60 @@
 package sg.edu.np.mad.splanner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView test = findViewById(R.id.test);
-        test.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        bottomNavigationView = findViewById(R.id.bottomNav);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new
+            BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
+
+                    Fragment fragment = null;
+                    switch (menuitem.getItemId()){
+                        case R.id.home:
+                            fragment = new HomeFragment();
+                            break;
+
+                        case  R.id.schedule:
+                            fragment = new ScheduleFragment();
+                            break;
+
+                        case  R.id.list:
+                            fragment = new TodoFragment();
+                            break;
+
+                        case  R.id.tracker:
+                            fragment = new TrackerFragment();
+                            break;
+
+                        case  R.id.timer:
+                            fragment = new TimerFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+
+                    return true;
+                }
+            };
 }
