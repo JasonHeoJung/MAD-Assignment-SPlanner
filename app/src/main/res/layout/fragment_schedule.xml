@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#D56565"
-    tools:context=".ScheduleFragment">
+    tools:context=".Timetable">
 
     <Button
         android:id="@+id/tuesday"
@@ -13,7 +13,7 @@
         android:layout_height="99dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:backgroundTint="#E86579"
+        android:backgroundTint="#9365E8"
         android:text="Tuesday"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/wed"
