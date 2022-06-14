@@ -4,20 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/drawable/custom_input.xml" value="0.2985" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/drawable/roundstyle.xml" value="0.2985" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_add_details.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_home.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_signup.xml" value="0.33" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_timetable.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_timetable_details.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_schedule.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_timer.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_todo.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/jason/StudioProjects/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_tracker.xml" value="0.358695652173913" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/fragment_home.xml" value="0.3671875" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/fragment_schedule.xml" value="0.3671875" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/fragment_timer.xml" value="0.3671875" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/fragment_todo.xml" value="0.3671875" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/layout/fragment_tracker.xml" value="0.3671875" />
+        <entry key="..\:/OneDrive - YM NP/OneDrive - Ngee Ann Polytechnic/Ngee Ann YM/Ngee Ann YM CSFP03 Y2/MAD/Assignment/Assignment/app/src/main/res/menu/menu.xml" value="0.3671875" />
       </map>
     </option>
   </component>

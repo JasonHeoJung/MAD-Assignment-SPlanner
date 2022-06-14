@@ -7,7 +7,7 @@
     tools:context=".addDetails">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editmodname"
         android:layout_width="341dp"
         android:layout_height="49dp"
         android:layout_marginStart="10dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editclassnam"
         android:layout_width="341dp"
         android:layout_height="49dp"
         android:layout_marginStart="10dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/edittime"
         android:layout_width="341dp"
         android:layout_height="49dp"
         android:layout_marginStart="10dp"
@@ -74,7 +74,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editmodname" />
 
     <TextView
         android:id="@+id/textView4"
@@ -87,7 +87,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editclassnam" />
 
     <Button
         android:id="@+id/add"
@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/edittime" />
 
     <Button
         android:id="@+id/cancel"
