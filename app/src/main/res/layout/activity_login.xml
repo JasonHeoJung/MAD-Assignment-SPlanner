@@ -45,11 +45,11 @@
         android:id="@+id/Signup"
         android:layout_width="250dp"
         android:layout_height="46dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="#5BBCE3"
         android:text="login"
         app:layout_constraintEnd_toEndOf="@+id/signuptxt"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="@+id/signuptxt"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
         app:strokeColor="@color/purple_700" />
@@ -58,12 +58,12 @@
         android:id="@+id/editTextPassword"
         android:layout_width="250dp"
         android:layout_height="42dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/Signup"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Signup"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
