@@ -23,11 +23,11 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Button mon = findViewById(R.id.monday);
-        Button tues = findViewById(R.id.tuesday);
-        Button weds = findViewById(R.id.wed);
-        Button thurs = findViewById(R.id.thursday);
-        Button fri = findViewById(R.id.friday);
+        Button mon = getView().findViewById(R.id.monday);
+        Button tues = getView().findViewById(R.id.tuesday);
+        Button weds = getView().findViewById(R.id.wed);
+        Button thurs = getView().findViewById(R.id.thursday);
+        Button fri = getView().findViewById(R.id.friday);
 
 
 
@@ -37,7 +37,7 @@ public class ScheduleFragment extends Fragment {
                 mon1 = "monday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("Monday", mon1);
-                Intent myint = new Intent(ScheduleFragment.this, timetable_details.class);
+                Intent myint = new Intent(getActivity(), timetable_details.class);
                 startActivity(myint);
             }
         });
@@ -47,7 +47,7 @@ public class ScheduleFragment extends Fragment {
                 tues1 = "tuesday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("tuesday", tues1);
-                Intent myint = new Intent(ScheduleFragment.this, timetable_details.class);
+                Intent myint = new Intent(getActivity(), timetable_details.class);
                 startActivity(myint);
             }
         });
@@ -57,7 +57,7 @@ public class ScheduleFragment extends Fragment {
                 wed1 = "wednesday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("wednesday", wed1);
-                Intent myint = new Intent(ScheduleFragment.this, timetable_details.class);
+                Intent myint = new Intent(getActivity(), timetable_details.class);
                 startActivity(myint);
             }
         });
@@ -67,7 +67,7 @@ public class ScheduleFragment extends Fragment {
                 thurs1 = "thursday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("thursday", thurs1);
-                Intent myint = new Intent(ScheduleFragment.this, timetable_details.class);
+                Intent myint = new Intent(getActivity(), timetable_details.class);
                 startActivity(myint);
             }
         });
@@ -77,7 +77,7 @@ public class ScheduleFragment extends Fragment {
                 fri1 = "friday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("friday", fri1);
-                Intent myint = new Intent(ScheduleFragment.this, timetable_details.class);
+                Intent myint = new Intent(getActivity(), timetable_details.class);
                 startActivity(myint);
             }
         });
