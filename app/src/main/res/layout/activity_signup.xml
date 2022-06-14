@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".SignupActivity">
 
     <EditText
         android:id="@+id/editTextUsername"
@@ -14,9 +14,9 @@
         android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,10 +45,11 @@
         android:id="@+id/Signup"
         android:layout_width="250dp"
         android:layout_height="46dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="84dp"
         android:backgroundTint="#5BBCE3"
-        android:text="login"
-        app:layout_constraintEnd_toEndOf="@+id/signuptxt"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="@+id/signuptxt"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
@@ -58,25 +59,24 @@
         android:id="@+id/editTextPassword"
         android:layout_width="250dp"
         android:layout_height="42dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/custom_input"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/Signup"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="@+id/Signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <TextView
-        android:id="@+id/signuptxt"
-        android:layout_width="151dp"
-        android:layout_height="37dp"
-        android:text="Don't have an account? Sign up here!"
+        android:id="@+id/cancelsignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="I already have an account"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Signup"
-        app:layout_constraintVertical_bias="0.107" />
+        app:layout_constraintTop_toBottomOf="@+id/Signup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
