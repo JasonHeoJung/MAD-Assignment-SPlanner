@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#D56565"
     tools:context=".ScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Schedule"
-        android:textColor="#000000"
-        android:textSize="30dp" />
+    <Button
+        android:id="@+id/tuesday"
+        android:layout_width="386dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#E86579"
+        android:text="Tuesday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/wed"
+        app:layout_constraintEnd_toEndOf="@+id/wed"
+        app:layout_constraintStart_toStartOf="@+id/wed"
+        app:layout_constraintTop_toBottomOf="@+id/monday" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/monday"
+        android:layout_width="386dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#EAB361"
+        android:text="Monday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/tuesday"
+        app:layout_constraintEnd_toEndOf="@+id/tuesday"
+        app:layout_constraintStart_toStartOf="@+id/tuesday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/wed"
+        android:layout_width="386dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#3F5CB3"
+        android:text="Wednesday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/thursday"
+        app:layout_constraintEnd_toEndOf="@+id/thursday"
+        app:layout_constraintStart_toStartOf="@+id/thursday"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday" />
+
+    <Button
+        android:id="@+id/thursday"
+        android:layout_width="386dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#54C8AD"
+        android:text="Thursday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/friday"
+        app:layout_constraintEnd_toEndOf="@+id/friday"
+        app:layout_constraintStart_toStartOf="@+id/friday"
+        app:layout_constraintTop_toBottomOf="@+id/wed" />
+
+    <Button
+        android:id="@+id/friday"
+        android:layout_width="386dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="#5BBCE3"
+        android:text="Friday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thursday" />
+</androidx.constraintlayout.widget.ConstraintLayout>
