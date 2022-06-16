@@ -14,39 +14,6 @@ import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextWatcher tw = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            EditText etUsername = findViewById(R.id.etUsername);
-            EditText etPassword = findViewById(R.id.etPassword);
-            Button loginBtn = findViewById(R.id.loginBtn);
-
-            String username = etUsername.getText().toString();
-            String password = etPassword.getText().toString();
-
-            if (username.trim().length() != 0 && password.trim().length() != 0) {
-                loginBtn.setEnabled(true);
-                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.purple_500));
-                loginBtn.setTextColor(loginBtn.getContext().getResources().getColor(R.color.white));
-            }
-            else {
-                loginBtn.setEnabled(false);
-                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.white));
-                loginBtn.setTextColor(Color.rgb(94, 94, 94));
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +47,39 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    TextWatcher tw = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            EditText etUsername = findViewById(R.id.etUsername);
+            EditText etPassword = findViewById(R.id.etPassword);
+            Button loginBtn = findViewById(R.id.loginBtn);
+
+            String username = etUsername.getText().toString();
+            String password = etPassword.getText().toString();
+
+            if (username.trim().length() != 0 && password.trim().length() != 0) {
+                loginBtn.setEnabled(true);
+                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.purple_500));
+                loginBtn.setTextColor(loginBtn.getContext().getResources().getColor(R.color.white));
+            }
+            else {
+                loginBtn.setEnabled(false);
+                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.white));
+                loginBtn.setTextColor(Color.rgb(94, 94, 94));
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private Boolean verifyUser() {
         return true;
