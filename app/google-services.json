@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "841052401383",
+    "firebase_url": "https://mad-asg-splanner-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mad-asg-splanner",
+    "storage_bucket": "mad-asg-splanner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841052401383:android:e0d45ea28bf2e667bffc42",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.splanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841052401383-0o46kfcnrb04j6t7ulo0ijhq5neqtuss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAameX0i9TfAkBPor4MVmdgZl_eecBSbRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841052401383-0o46kfcnrb04j6t7ulo0ijhq5neqtuss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
