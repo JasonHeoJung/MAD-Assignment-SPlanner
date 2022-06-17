@@ -2,6 +2,8 @@ package sg.edu.np.mad.splanner;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -9,38 +11,78 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
 
 public class TimerFragment extends Fragment {
-    private static final long START_TIME_IN_MILLIS = 600000;
-
+    private EditText mEditTextInput;
     private TextView mTextViewCountDown;
+    private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
 
     private CountDownTimer mCountDownTimer;
 
     private boolean mTimerRunning;
-    private long mTimerLeftInMillis = START_TIME_IN_MILLIS;
+
+    private long mStartTimeInMillis;
+    private long mTimerLeftInMillis;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mTextViewCountDown = getView().findViewById(R.id.text_view_countdown);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_timer, container, false);
 
-        mButtonStartPause = getView().findViewById(R.id.button_start_pause);
-        mButtonReset = getView().findViewById(R.id.button_reset);
+        mEditTextInput = view.findViewById(R.id.edit_text_input);
+        mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
+
+        mButtonSet = view.findViewById(R.id.button_set);
+        mButtonStartPause = view.findViewById(R.id.button_start_pause);
+        mButtonReset = view.findViewById(R.id.button_reset);
+
+        mButtonSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String input = mEditTextInput.getText().toString();
+                if (input.length() == 0) {
+                    Toast.makeText(getActivity(), "Field can't be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                long millisInput = Long.parseLong(input) * 60000;
+                if (millisInput == 0) {
+                    Toast.makeText(getActivity(), "Please enter a positive number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                setTime(millisInput);
+                mEditTextInput.setText("");
+            }
+        });
 
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mTimerLeftInMillis == 0){
+                    String input = mEditTextInput.getText().toString();
+                    if (input.length() == 0) {
+                        Toast.makeText(getActivity(), "Field can't be empty", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    long millisInput = Long.parseLong(input) * 60000;
+                    if (millisInput == 0) {
+                        Toast.makeText(getActivity(), "Please enter a positive number", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    setTime(millisInput);
+                    mEditTextInput.setText("");
+                }
+
                 if (mTimerRunning) {
                     pauseTimer();
-                }
-                else {
+                } else {
                     startTimer();
                 }
             }
@@ -52,8 +94,13 @@ public class TimerFragment extends Fragment {
                 resetTimer();
             }
         });
-
         updateCountDownText();
+        return view;
+    }
+
+    private void setTime(long milliseconds){
+        mStartTimeInMillis = milliseconds;
+        resetTimer();
     }
 
     private void startTimer() {
@@ -68,44 +115,67 @@ public class TimerFragment extends Fragment {
             public void onFinish() {
                 mTimerRunning= false;
                 mButtonStartPause.setText("Start");
-                mButtonStartPause.setVisibility(View.INVISIBLE);
-                mButtonReset.setVisibility(View.VISIBLE);
+                updateWatchInterface();
             }
         }.start();
         mTimerRunning = true;
-        mButtonStartPause.setText("Pause");
-        mButtonReset.setVisibility(View.INVISIBLE);
+        updateWatchInterface();
     }
 
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
-        mButtonStartPause.setText("Start");
-        mButtonReset.setVisibility(View.VISIBLE);
+        updateWatchInterface();
     }
 
     private void resetTimer() {
-        mTimerLeftInMillis = START_TIME_IN_MILLIS;
+        mTimerLeftInMillis = mStartTimeInMillis;
         updateCountDownText();
-        mButtonReset.setVisibility(View.INVISIBLE);
-        mButtonStartPause.setVisibility(View.VISIBLE);
+        updateWatchInterface();
     }
 
     private void updateCountDownText() {
-        int minutes = (int) (mTimerLeftInMillis / 1000) / 60;
+        int hours = (int) (mTimerLeftInMillis / 1000) / 3600;
+        int minutes = (int) ((mTimerLeftInMillis / 1000) % 3600) / 60;
         int seconds = (int) (mTimerLeftInMillis / 1000) % 60;
 
-        String timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
+        String timeLeftFormatted;
+        if (hours > 0) {
+            timeLeftFormatted = String.format(Locale.getDefault(),"%d:%02d:%02d", hours, minutes, seconds);
+        }
+        else {
+            timeLeftFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
+
+        }
 
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timer, container, false);
+    private void updateWatchInterface() {
+        if (mTimerRunning) {
+            mEditTextInput.setVisibility(View.INVISIBLE);
+            mButtonSet.setVisibility(View.INVISIBLE);
+            mButtonReset.setVisibility(View.INVISIBLE);
+            mButtonStartPause.setText("Pause");
+        }
+        else {
+            mEditTextInput.setVisibility(View.VISIBLE);
+            mButtonSet.setVisibility(View.VISIBLE);
+            mButtonStartPause.setText("Start");
+
+            if (mTimerLeftInMillis < 1000) {
+                mButtonStartPause.setVisibility(View.INVISIBLE);
+            }
+            else {
+                mButtonStartPause.setVisibility(View.VISIBLE);
+            }
+
+            if (mTimerLeftInMillis < mStartTimeInMillis) {
+                mButtonReset.setVisibility(View.VISIBLE);
+            }
+            else {
+                mButtonReset.setVisibility(View.INVISIBLE);
+            }
+        }
     }
-
-
 }

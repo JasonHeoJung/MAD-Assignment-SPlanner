@@ -6,6 +6,7 @@
     tools:context=".TimerFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +23,7 @@
         android:id="@+id/button_start_pause"
         android:layout_below="@+id/text_view_countdown"
         android:layout_centerHorizontal="true"
+        android:backgroundTint="#3CB043"
         android:text="start"/>
 
     <Button
@@ -32,7 +34,27 @@
         android:layout_marginStart="11dp"
         android:layout_toEndOf="@id/button_start_pause"
         android:text="reset"
+        android:backgroundTint="#E3242B"
         android:visibility="invisible"
         tools:visibility="visible"/>
+
+    <EditText
+        android:id="@+id/edit_text_input"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/text_view_countdown"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:hint="Minutes"
+        android:maxLength="4"/>
+
+    <Button
+        android:id="@+id/button_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/edit_text_input"
+        android:layout_toEndOf="@+id/edit_text_input"
+        android:backgroundTint="#9365E8"
+        android:text="SET" />
 
 </RelativeLayout>
