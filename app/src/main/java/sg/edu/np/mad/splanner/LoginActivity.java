@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        EditText etUsername = findViewById(R.id.etUsername);
+        EditText etUsername = findViewById(R.id.etEmail);
         EditText etPassword = findViewById(R.id.etPassword);
 
         etUsername.addTextChangedListener(tw);
@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (verifyUser()) {
-                    Intent Signup = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(Signup);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     // error feedback
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            EditText etUsername = findViewById(R.id.etUsername);
+            EditText etUsername = findViewById(R.id.etEmail);
             EditText etPassword = findViewById(R.id.etPassword);
             Button loginBtn = findViewById(R.id.loginBtn);
 

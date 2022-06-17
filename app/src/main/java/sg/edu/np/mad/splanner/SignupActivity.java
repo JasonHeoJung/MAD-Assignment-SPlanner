@@ -26,7 +26,7 @@ public class SignupActivity extends AppCompatActivity {
                 finish();
             }
         });
-        EditText etUsername = findViewById(R.id.etUsername);
+        EditText etUsername = findViewById(R.id.etEmail);
         EditText etPassword = findViewById(R.id.etPassword);
 
         etUsername.addTextChangedListener(tw);
@@ -37,8 +37,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (addUser()) {
-                    Intent Signup = new Intent(SignupActivity.this, MainActivity.class);
-                    startActivity(Signup);
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else {
                     // error feedback
@@ -55,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            EditText etUsername = findViewById(R.id.etUsername);
+            EditText etUsername = findViewById(R.id.etEmail);
             EditText etPassword = findViewById(R.id.etPassword);
             Button signupBtn = findViewById(R.id.signupBtn);
 
@@ -81,6 +81,7 @@ public class SignupActivity extends AppCompatActivity {
     };
 
     private Boolean addUser() {
+
         return true;
     }
 }
