@@ -8,10 +8,10 @@
 
     <TextView
         android:id="@+id/profUsername"
-        android:layout_width="155dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="179dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="52dp"
         android:text="username"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,18 +21,18 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/profPassword"
-        android:layout_width="155dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="179dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="16dp"
         android:text="password"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,19 +42,33 @@
         android:id="@+id/userEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="52dp"
         android:text="Edit"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintStart_toEndOf="@+id/profUsername"
-        tools:layout_editor_absoluteY="45dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/passEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
         android:text="Edit"
         android:textColor="@android:color/holo_blue_dark"
         app:layout_constraintStart_toEndOf="@+id/profPassword"
-        tools:layout_editor_absoluteY="77dp" />
+        app:layout_constraintTop_toBottomOf="@+id/userEdit" />
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="226dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="156dp"
+        android:backgroundTint="#67B7D1"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
