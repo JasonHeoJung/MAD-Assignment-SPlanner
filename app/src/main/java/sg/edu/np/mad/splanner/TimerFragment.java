@@ -1,5 +1,6 @@
 package sg.edu.np.mad.splanner;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class TimerFragment extends Fragment {
     private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
+    private TextView mTimesUp;
 
     private CountDownTimer mCountDownTimer;
 
@@ -42,6 +44,7 @@ public class TimerFragment extends Fragment {
         mButtonSet = view.findViewById(R.id.button_set);
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mButtonReset = view.findViewById(R.id.button_reset);
+        mTimesUp = view.findViewById(R.id.times_up_text);
 
         mButtonSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +118,8 @@ public class TimerFragment extends Fragment {
             public void onFinish() {
                 mTimerRunning= false;
                 mButtonStartPause.setText("Start");
+                MediaPlayer music = MediaPlayer.create(getActivity(), R.raw.times_up);
+                music.start();
                 updateWatchInterface();
             }
         }.start();
@@ -156,15 +161,18 @@ public class TimerFragment extends Fragment {
             mEditTextInput.setVisibility(View.INVISIBLE);
             mButtonSet.setVisibility(View.INVISIBLE);
             mButtonReset.setVisibility(View.INVISIBLE);
+            mTimesUp.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Pause");
         }
         else {
             mEditTextInput.setVisibility(View.VISIBLE);
             mButtonSet.setVisibility(View.VISIBLE);
+            mTimesUp.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Start");
 
             if (mTimerLeftInMillis < 1000) {
                 mButtonStartPause.setVisibility(View.INVISIBLE);
+                mTimesUp.setVisibility(View.VISIBLE);
             }
             else {
                 mButtonStartPause.setVisibility(View.VISIBLE);
