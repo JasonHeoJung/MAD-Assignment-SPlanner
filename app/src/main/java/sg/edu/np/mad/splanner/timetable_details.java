@@ -1,6 +1,8 @@
 package sg.edu.np.mad.splanner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +30,14 @@ public class timetable_details extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myint = new Intent(timetable_details.this, addDetails.class);
                 startActivity(myint);
+            }
+        });
+        Button backtohome = findViewById(R.id.back);
+        backtohome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
             }
         });
         setAdapter();
