@@ -1,8 +1,9 @@
-package sg.edu.np.mad.splanner.ui;
+package sg.edu.np.mad.splanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 
 public class UserProfile extends AppCompatActivity {
 

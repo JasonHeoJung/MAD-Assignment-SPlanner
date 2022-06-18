@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner">
         <activity
-            android:name=".ui.UserProfile"
+            android:name=".UserProfile"
             android:exported="false" />
         <activity
             android:name=".SignupActivity"
