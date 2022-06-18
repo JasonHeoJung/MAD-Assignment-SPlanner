@@ -36,9 +36,8 @@ public class timetable_details extends AppCompatActivity {
         backtohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new ScheduleFragment();
-                FragmentTransaction fragmentTransaction= getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.container, fragment).commit();
+
+                finish();
             }
         });
         setAdapter();
