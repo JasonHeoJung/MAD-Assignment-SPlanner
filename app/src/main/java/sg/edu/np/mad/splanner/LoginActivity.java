@@ -3,11 +3,14 @@ package sg.edu.np.mad.splanner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,23 +19,69 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView signuptxt = findViewById(R.id.signuptxt);
-        signuptxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Intent Signup = new Intent(LoginActivity.this, SignupActivity.class);
-                Signup.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(Signup);
-                return false;
-            }
-        });
-
-        Button LoginButton = findViewById(R.id.Signup);
-        LoginButton.setOnClickListener(new View.OnClickListener() {
+        ImageView closeImg = findViewById(R.id.closeImg);
+        closeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
+
+        EditText etUsername = findViewById(R.id.etEmail);
+        EditText etPassword = findViewById(R.id.etPassword);
+
+        etUsername.addTextChangedListener(tw);
+        etPassword.addTextChangedListener(tw);
+
+        Button loginBtn = findViewById(R.id.loginBtn);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (verifyUser()) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    // error feedback
+                }
+            }
+        });
+    }
+
+    TextWatcher tw = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            EditText etUsername = findViewById(R.id.etEmail);
+            EditText etPassword = findViewById(R.id.etPassword);
+            Button loginBtn = findViewById(R.id.loginBtn);
+
+            String username = etUsername.getText().toString();
+            String password = etPassword.getText().toString();
+
+            if (username.trim().length() != 0 && password.trim().length() != 0) {
+                loginBtn.setEnabled(true);
+                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.purple_500));
+                loginBtn.setTextColor(loginBtn.getContext().getResources().getColor(R.color.white));
+            }
+            else {
+                loginBtn.setEnabled(false);
+                loginBtn.setBackgroundColor(loginBtn.getContext().getResources().getColor(R.color.white));
+                loginBtn.setTextColor(Color.rgb(94, 94, 94));
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+    private Boolean verifyUser() {
+        return true;
     }
 }
