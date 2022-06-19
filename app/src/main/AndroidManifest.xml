@@ -28,10 +28,10 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".addDetails"
+            android:name=".AddDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".timetable_details"
+            android:name=".TimetableDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".Timetable"
