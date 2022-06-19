@@ -8,26 +8,10 @@
     tools:context=".Timetable">
 
     <Button
-        android:id="@+id/tuesday"
-        android:layout_width="386dp"
-        android:layout_height="99dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="#9365E8"
-        android:text="Tuesday"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/wed"
-        app:layout_constraintEnd_toEndOf="@+id/wed"
-        app:layout_constraintStart_toStartOf="@+id/wed"
-        app:layout_constraintTop_toBottomOf="@+id/monday" />
-
-    <Button
         android:id="@+id/monday"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="70dp"
-        android:layout_marginEnd="10dp"
         android:backgroundTint="#EAB361"
         android:text="Monday"
         android:textSize="24sp"
@@ -37,11 +21,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/wed"
-        android:layout_width="386dp"
+        android:id="@+id/tuesday"
+        android:layout_width="0dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:backgroundTint="#9365E8"
+        android:text="Tuesday"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/wed"
+        app:layout_constraintEnd_toEndOf="@+id/wed"
+        app:layout_constraintStart_toStartOf="@+id/wed"
+        app:layout_constraintTop_toBottomOf="@+id/monday" />
+
+    <Button
+        android:id="@+id/wed"
+        android:layout_width="0dp"
+        android:layout_height="99dp"
         android:backgroundTint="#3F5CB3"
         android:text="Wednesday"
         android:textSize="24sp"
@@ -52,10 +46,8 @@
 
     <Button
         android:id="@+id/thursday"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:backgroundTint="#54C8AD"
         android:text="Thursday"
         android:textSize="24sp"
@@ -66,11 +58,11 @@
 
     <Button
         android:id="@+id/friday"
-        android:layout_width="386dp"
+        android:layout_width="0dp"
         android:layout_height="99dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="90dp"
         android:backgroundTint="#5BBCE3"
         android:text="Friday"
         android:textSize="24sp"

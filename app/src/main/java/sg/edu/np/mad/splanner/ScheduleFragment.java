@@ -12,13 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class ScheduleFragment extends Fragment {
-    private static String mon1;
-    private static String tues1;
-    private static String wed1;
-    private static String thurs1;
-    private static String fri1;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,55 +37,17 @@ public class ScheduleFragment extends Fragment {
         Button thurs = view.findViewById(R.id.thursday);
         Button fri = view.findViewById(R.id.friday);
 
-        mon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mon1 = "monday";
-                Bundle mybundle = new Bundle();
-                mybundle.putString("Monday", mon1);
-                Intent myint = new Intent(getActivity(), timetable_details.class);
-                startActivity(myint);
-            }
-        });
-        tues.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tues1 = "tuesday";
-                Bundle mybundle = new Bundle();
-                mybundle.putString("tuesday", tues1);
-                Intent myint = new Intent(getActivity(), timetable_details.class);
-                startActivity(myint);
-            }
-        });
-        weds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                wed1 = "wednesday";
-                Bundle mybundle = new Bundle();
-                mybundle.putString("wednesday", wed1);
-                Intent myint = new Intent(getActivity(), timetable_details.class);
-                startActivity(myint);
-            }
-        });
-        thurs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                thurs1 = "thursday";
-                Bundle mybundle = new Bundle();
-                mybundle.putString("thursday", thurs1);
-                Intent myint = new Intent(getActivity(), timetable_details.class);
-                startActivity(myint);
-            }
-        });
-        fri.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fri1 = "friday";
-                Bundle mybundle = new Bundle();
-                mybundle.putString("friday", fri1);
-                Intent myint = new Intent(getActivity(), timetable_details.class);
-                startActivity(myint);
-            }
-        });
+        ArrayList<Button> dayList = new ArrayList<>(Arrays.asList(mon, tues, weds, thurs, fri));
+
+        for (Button day: dayList) {
+            day.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), TimetableDetailsActivity.class);
+                    intent.putExtra("day", day.getText());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addDetails">
+    tools:context=".AddDetailsActivity">
 
     <EditText
         android:id="@+id/editmodname"
@@ -14,22 +14,22 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
+        android:hint="Module name"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editclassnam"
+        android:id="@+id/editclassname"
         android:layout_width="341dp"
         android:layout_height="49dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
+        android:hint="Class"
         android:inputType="textPersonName"
-        android:text="class"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -42,8 +42,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
+        android:hint="Time"
         android:inputType="textPersonName"
-        android:text="TIme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editclassnam" />
+        app:layout_constraintTop_toBottomOf="@+id/editclassname" />
 
     <Button
         android:id="@+id/add"
