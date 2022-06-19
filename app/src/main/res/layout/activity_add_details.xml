@@ -15,7 +15,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -29,7 +29,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="class"
+        android:hint="class"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -43,7 +43,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="TIme"
+        android:hint="Time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
