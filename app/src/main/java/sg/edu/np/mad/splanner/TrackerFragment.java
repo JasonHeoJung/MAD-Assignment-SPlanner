@@ -3,62 +3,77 @@ package sg.edu.np.mad.splanner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TrackerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class TrackerFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TrackerFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TrackerFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TrackerFragment newInstance(String param1, String param2) {
-        TrackerFragment fragment = new TrackerFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    Fragment fragment;
+    MainActivity mainActivity;
+    private RecyclerView recyclerView;
+    private TextView a;
+    private TextView b;
+    private String score;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_tracker, container, false);
+        a = v.findViewById(R.id.title1);
+        b = v.findViewById(R.id.weakest);
+        mainActivity = (MainActivity) getActivity();
+        if (mainActivity.scoreList1.getScoreList().size() == 0) {
+            a.setVisibility(View.GONE);
+            b.setVisibility(View.GONE);
+        }
+        else {
+            for (int i = 0; i < mainActivity.scoreList1.getScoreList().size(); i++) {
+                score = mainActivity.scoreList1.getScoreList().get(i).grade;
+                if (score.toLowerCase().equals("f")) {
+                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
+                }
+                else if (score.toLowerCase().equals("d")) {
+                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
+                }
+                else if (score.toLowerCase().equals("c")) {
+                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
+                }
+                else if (score.toLowerCase().equals("b")) {
+                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
+                }
+                else if (score.toLowerCase().equals("a")) {
+                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
+                }
+            }
+            a.setVisibility(View.VISIBLE);
+            b.setVisibility(View.VISIBLE);
+
+        }
+        recyclerView = v.findViewById(R.id.resultList);
+        Button addMarks = v.findViewById(R.id.addMarks);
+        addMarks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new addMarks();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+            }
+        });
+        setAdapter();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tracker, container, false);
+        return v;
+    }
+
+    public void setAdapter() {
+        TrackerRecyclerView adapter = new TrackerRecyclerView(mainActivity.scoreList1.getScoreList());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
     }
 }
