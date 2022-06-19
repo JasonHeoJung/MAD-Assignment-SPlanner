@@ -22,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -62,7 +64,6 @@ public class SignupActivity extends AppCompatActivity {
                 pb.setVisibility(View.GONE);
             }
         });
-
     }
 
     TextWatcher tw = new TextWatcher() {
@@ -83,14 +84,12 @@ public class SignupActivity extends AppCompatActivity {
             }
             else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 etEmail.setError("Valid Email is Required");
-                etEmail.requestFocus();
             }
             else if (password.trim().length() == 0) {
                 etPassword.setError("Password is Required");
             }
             else if (password.trim().length() < 6) {
                 etPassword.setError("Password needs to be at least 6 characters");
-                etPassword.requestFocus();
             }
             else {
                 valid = true;
@@ -120,10 +119,27 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
+                    User user = new User();
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
+                    reference.child(auth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else {
+                                try {
+                                    throw task.getException();
+                                }
+                                catch (Exception e) {
+                                    Log.e(TAG, e.toString());
+                                }
+                            }
+                        }
+                    });
                 }
                 else {
                     try {
