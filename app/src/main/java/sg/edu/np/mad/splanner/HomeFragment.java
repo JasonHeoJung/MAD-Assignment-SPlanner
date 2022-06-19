@@ -3,34 +3,74 @@ package sg.edu.np.mad.splanner;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
 
-    private TextView schedule;
     private Button profile;
+    private FirebaseAuth auth;
+    private DatabaseReference reference;
+    private ArrayList<Event> schedule;
+    private Intent retrieveIntent;
+    private String dayOfWeek;
+    private TextView noSchedule;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
+        retrieveIntent = getActivity().getIntent();
+        schedule = new ArrayList<>();
+        noSchedule = view.findViewById(R.id.noSchedule);
         profile = view.findViewById(R.id.profile);
-        schedule = view.findViewById(R.id.schedule);
-        Date dateCurrent = Calendar.getInstance().getTime();
+        Calendar calender = Calendar.getInstance();
+        int day = calender.get(Calendar.DAY_OF_WEEK);
 
-        schedule.setText(dateCurrent.toString());
+        if (day == Calendar.MONDAY){
+            dayOfWeek = "Monday";
+        }
+        else if (day == Calendar.TUESDAY){
+            dayOfWeek = "Tuesday";
+        }
+        else if (day == Calendar.WEDNESDAY){
+            dayOfWeek = "Wednesday";
+        }
+        else if (day == Calendar.THURSDAY){
+            dayOfWeek = "Thursday";
+        }
+        else if (day == Calendar.FRIDAY){
+            dayOfWeek = "Friday";
+        }
+        else {
+            noSchedule.setVisibility(View.VISIBLE);
+            noSchedule.setText("No schedule on the weekends, showing next available day's");
+            dayOfWeek = "Monday";
+        }
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,4 +82,37 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reference.child(auth.getCurrentUser().getUid()).child("schedule").child(dayOfWeek)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        schedule = new ArrayList<>();
+                        for (DataSnapshot eventSnapshot: snapshot.getChildren()) {
+                            schedule.add(eventSnapshot.getValue(Event.class));
+                        }
+                        setAdapter();
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    private void setAdapter() {
+        RecyclerView recyclerView = getActivity().findViewById(R.id.listImage);
+        ScheduleAdapter adapter = new ScheduleAdapter(schedule);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
+    }
+
 }
