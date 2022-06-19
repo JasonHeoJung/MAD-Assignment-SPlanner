@@ -18,8 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 public class AddDetailsActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference reference;
-    private ValueEventListener valueEventListener;
-    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +53,5 @@ public class AddDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        reference.addValueEventListener(valueEventListener);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        reference.removeEventListener(valueEventListener);
     }
 }
