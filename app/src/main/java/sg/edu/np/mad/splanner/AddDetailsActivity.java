@@ -28,7 +28,7 @@ public class AddDetailsActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("users");
 
         EditText etModule = findViewById(R.id.editmodname);
-        EditText etClass = findViewById(R.id.editclassname);
+        EditText etClass = findViewById(R.id.editclassnam);
         EditText etTime = findViewById(R.id.edittime);
 
         Button addEventBtn = findViewById(R.id.add);
