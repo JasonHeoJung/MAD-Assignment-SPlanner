@@ -35,6 +35,7 @@ public class TimetableDetailsActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
         retrieveIntent = getIntent();
+        schedule = new ArrayList<>();
 
         Button addScheduleBtn = findViewById(R.id.addsched);
         addScheduleBtn.setOnClickListener(new View.OnClickListener(){
@@ -46,13 +47,18 @@ public class TimetableDetailsActivity extends AppCompatActivity {
             }
         });
 
-        schedule = new ArrayList<>();
+        Button backBtn = findViewById(R.id.back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
         reference.child(auth.getCurrentUser().getUid()).child("schedule").child(retrieveIntent.getStringExtra("day"))
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
