@@ -30,7 +30,7 @@ public class Timetable extends AppCompatActivity {
                 mon1 = "monday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("Monday", mon1);
-                Intent myint = new Intent(Timetable.this, timetable_details.class);
+                Intent myint = new Intent(Timetable.this, TimetableDetailsActivity.class);
                 startActivity(myint);
             }
         });
@@ -40,7 +40,7 @@ public class Timetable extends AppCompatActivity {
                 tues1 = "tuesday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("tuesday", tues1);
-                Intent myint = new Intent(Timetable.this, timetable_details.class);
+                Intent myint = new Intent(Timetable.this, TimetableDetailsActivity.class);
                 startActivity(myint);
             }
         });
@@ -50,7 +50,7 @@ public class Timetable extends AppCompatActivity {
                 wed1 = "wednesday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("wednesday", wed1);
-                Intent myint = new Intent(Timetable.this, timetable_details.class);
+                Intent myint = new Intent(Timetable.this, TimetableDetailsActivity.class);
                 startActivity(myint);
             }
         });
@@ -60,7 +60,7 @@ public class Timetable extends AppCompatActivity {
                 thurs1 = "thursday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("thursday", thurs1);
-                Intent myint = new Intent(Timetable.this, timetable_details.class);
+                Intent myint = new Intent(Timetable.this, TimetableDetailsActivity.class);
                 startActivity(myint);
             }
         });
@@ -70,7 +70,7 @@ public class Timetable extends AppCompatActivity {
                 fri1 = "friday";
                 Bundle mybundle = new Bundle();
                 mybundle.putString("friday", fri1);
-                Intent myint = new Intent(Timetable.this, timetable_details.class);
+                Intent myint = new Intent(Timetable.this, TimetableDetailsActivity.class);
                 startActivity(myint);
             }
         });
