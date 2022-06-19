@@ -10,14 +10,22 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    public ArrayList<task> taskList = new ArrayList<>();
+    public TaskList taskList1;
+    public ArrayList<score> scoreList = new ArrayList<>();
+    public ScoreList scoreList1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        taskList1 = new TaskList(taskList);
+        scoreList1 = new ScoreList(scoreList);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
 
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case  R.id.list:
-                            fragment = new TodoFragment();
+                            fragment = new ToDoListFragment();
                             break;
 
                         case  R.id.tracker:
