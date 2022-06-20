@@ -14,10 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class ToDoListFragment extends Fragment {
-    MainActivity mainActivity;
-    private Fragment fragment;
+    private FirebaseAuth auth;
+    private DatabaseReference reference;
     private RecyclerView recyclerView;
+    private ArrayList<Task> tasks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,35 +39,46 @@ public class ToDoListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mainActivity = (MainActivity) getActivity();
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
         recyclerView = view.findViewById(R.id.taskList);
 
         Button addTask = view.findViewById(R.id.addMoreTask);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment = new AddTaskFragment();
+                Fragment fragment = new AddTaskFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }
         });
-        // Inflate the layout for this fragment
-        setAdapter();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reference.child(auth.getCurrentUser().getUid()).child("tasks").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tasks = new ArrayList<>();
+                for (DataSnapshot eventSnapshot: snapshot.getChildren()) {
+                    tasks.add(eventSnapshot.getValue(Task.class));
+                }
+                setAdapter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void setAdapter() {
-        ToDoListAdapter adapter = new ToDoListAdapter(mainActivity.taskList1.getTaskList());
+        ToDoListAdapter adapter = new ToDoListAdapter(tasks);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
-
-//    @Override
-//    public void onNoteClick(int position) {
-//        Task task = mainActivity.taskList1.getTaskList().get(position);
-//        mainActivity.taskList1.getTaskList().remove(task);
-//        fragment = new ToDoListFragment();
-//        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-//    }
 }
