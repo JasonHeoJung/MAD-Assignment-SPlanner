@@ -3,17 +3,12 @@ package sg.edu.np.mad.splanner;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class addTask extends Fragment {
 
@@ -24,7 +19,7 @@ public class addTask extends Fragment {
     private Button cancelAddTask;
     private EditText date;
     private Bundle b;
-    private task t;
+    private Task t;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +36,7 @@ public class addTask extends Fragment {
                 fragment = new ToDoListFragment();
                 String name = taskName.getText().toString();
                 String dueDate = date.getText().toString();
-                t = new task(name, dueDate);
+                t = new Task(name, dueDate);
 //                b = new Bundle();
 //                b.putBoolean("status", true);
 //                fragment.setArguments(b);

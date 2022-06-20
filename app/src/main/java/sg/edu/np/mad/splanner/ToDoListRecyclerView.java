@@ -1,10 +1,8 @@
 package sg.edu.np.mad.splanner;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ToDoListRecyclerView extends RecyclerView.Adapter<ToDoListRecyclerView.myViewHolder> {
-    ArrayList<task> taskList;
+    ArrayList<Task> taskList;
     OnNoteListener mOnNoteListener;
 
-    public ToDoListRecyclerView(ArrayList<task> taskList, OnNoteListener onNoteListener) {
+    public ToDoListRecyclerView(ArrayList<Task> taskList, OnNoteListener onNoteListener) {
         this.taskList = taskList;
         this.mOnNoteListener = onNoteListener;
     }

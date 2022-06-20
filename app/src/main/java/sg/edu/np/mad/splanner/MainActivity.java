@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    public ArrayList<task> taskList = new ArrayList<>();
+    public ArrayList<Task> taskList = new ArrayList<>();
     public TaskList taskList1;
     public ArrayList<score> scoreList = new ArrayList<>();
     public ScoreList scoreList1;

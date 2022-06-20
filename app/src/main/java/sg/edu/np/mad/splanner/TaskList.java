@@ -3,17 +3,17 @@ package sg.edu.np.mad.splanner;
 import java.util.ArrayList;
 
 public class TaskList {
-    ArrayList<task> taskList;
+    ArrayList<Task> taskList;
 
-    public TaskList(ArrayList<task> taskList) {
+    public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
 
-    public ArrayList<task> getTaskList() {
+    public ArrayList<Task> getTaskList() {
         return taskList;
     }
 
-    public void setTaskList(task t) {
+    public void setTaskList(Task t) {
         this.taskList.add(t);
     }
 }

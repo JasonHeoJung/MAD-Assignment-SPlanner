@@ -1,10 +1,10 @@
 package sg.edu.np.mad.splanner;
 
-public class task {
+public class Task {
     String taskName;
     String dueDate;
 
-    public task(String taskName, String dueDate) {
+    public Task(String taskName, String dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
     }
