@@ -9,34 +9,39 @@
         android:id="@+id/moduletext"
         android:layout_width="55dp"
         android:layout_height="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Module"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/classname"
         android:layout_width="64dp"
         android:layout_height="24dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="60dp"
         android:text="Class"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/moduletext"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timetext"
         android:layout_width="64dp"
         android:layout_height="24dp"
-        android:layout_marginStart="199dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="148dp"
+        android:layout_marginStart="60dp"
         android:text="time"
         android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/classname"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
