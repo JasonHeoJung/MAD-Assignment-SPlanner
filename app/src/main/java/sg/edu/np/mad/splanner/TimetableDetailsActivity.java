@@ -3,6 +3,7 @@ package sg.edu.np.mad.splanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +37,10 @@ public class TimetableDetailsActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("users");
         retrieveIntent = getIntent();
         schedule = new ArrayList<>();
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
 
         Button addScheduleBtn = findViewById(R.id.addsched);
         addScheduleBtn.setOnClickListener(new View.OnClickListener(){

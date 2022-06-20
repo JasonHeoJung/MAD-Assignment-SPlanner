@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +28,7 @@ public class ToDoListFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private RecyclerView recyclerView;
-    private ArrayList<String> taskIds;
-    private ArrayList<Task> tasks;
+    private task t;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +43,8 @@ public class ToDoListFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
         recyclerView = view.findViewById(R.id.taskList);
-
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
         Button addTask = view.findViewById(R.id.addMoreTask);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override

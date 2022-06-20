@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +29,7 @@ public class TrackerFragment extends Fragment {
         a = v.findViewById(R.id.title1);
         b = v.findViewById(R.id.weakest);
         mainActivity = (MainActivity) getActivity();
+
         if (mainActivity.scoreList1.getScoreList().size() == 0) {
             a.setVisibility(View.GONE);
             b.setVisibility(View.GONE);
@@ -56,6 +58,8 @@ public class TrackerFragment extends Fragment {
 
         }
         recyclerView = v.findViewById(R.id.resultList);
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
         Button addMarks = v.findViewById(R.id.addMarks);
         addMarks.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -45,11 +45,6 @@ public class TrackerRecyclerView extends RecyclerView.Adapter<TrackerRecyclerVie
         String name = scoreList.get(position).getSubject();
         String g1 = scoreList.get(position).getGrade();
 
-        if (position >= 1) {
-            holder.title.setVisibility(View.GONE);
-            holder.title2.setVisibility(View.GONE);
-        }
-
         holder.subjName.setText(name);
         holder.grade.setText(g1);
     }
