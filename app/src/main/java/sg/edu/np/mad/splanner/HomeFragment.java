@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +51,11 @@ public class HomeFragment extends Fragment {
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
+
+        RecyclerView recyclerView = view.findViewById(R.id.listImage);
+
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
 
         if (day == Calendar.MONDAY){
             dayOfWeek = "Monday";
