@@ -17,7 +17,7 @@ public class addMarks extends Fragment {
     private Button cancelAddSubject;
     private EditText subjectName;
     private EditText grade;
-    private score s;
+    private Score s;
     private MainActivity mainActivity;
 
     @Override
@@ -35,7 +35,7 @@ public class addMarks extends Fragment {
                 fragment = new TrackerFragment();
                 String subjName = subjectName.getText().toString();
                 String grade1 = grade.getText().toString();
-                s = new score(subjName, grade1);
+                s = new Score(subjName, grade1);
                 mainActivity.scoreList1.setScoreList(s);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }

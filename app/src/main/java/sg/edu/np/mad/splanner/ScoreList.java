@@ -3,17 +3,17 @@ package sg.edu.np.mad.splanner;
 import java.util.ArrayList;
 
 public class ScoreList {
-    ArrayList<score> scoreList;
+    ArrayList<Score> scoreList;
 
-    public ScoreList(ArrayList<score> scoreList) {
+    public ScoreList(ArrayList<Score> scoreList) {
         this.scoreList = scoreList;
     }
 
-    public ArrayList<score> getScoreList() {
+    public ArrayList<Score> getScoreList() {
         return scoreList;
     }
 
-    public void setScoreList(score s) {
+    public void setScoreList(Score s) {
         this.scoreList.add(s);
     }
 }

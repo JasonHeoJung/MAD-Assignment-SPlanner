@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     public ArrayList<Task> taskList = new ArrayList<>();
     public TaskList taskList1;
-    public ArrayList<score> scoreList = new ArrayList<>();
+    public ArrayList<Score> scoreList = new ArrayList<>();
     public ScoreList scoreList1;
 
     @Override
