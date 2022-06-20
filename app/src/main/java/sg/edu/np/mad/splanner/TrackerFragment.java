@@ -2,6 +2,8 @@ package sg.edu.np.mad.splanner;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -14,68 +16,96 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class TrackerFragment extends Fragment {
-    Fragment fragment;
-    MainActivity mainActivity;
+    private FirebaseAuth auth;
+    private DatabaseReference reference;
     private RecyclerView recyclerView;
-    private TextView a;
-    private TextView b;
-    private String score;
+    private ArrayList<String> scoreIds;
+    private ArrayList<Score> scores;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_tracker, container, false);
-        a = v.findViewById(R.id.title1);
-        b = v.findViewById(R.id.weakest);
-        mainActivity = (MainActivity) getActivity();
+        return inflater.inflate(R.layout.fragment_tracker, container, false);
+    }
 
-        if (mainActivity.scoreList1.getScoreList().size() == 0) {
-            a.setVisibility(View.GONE);
-            b.setVisibility(View.GONE);
-        }
-        else {
-            for (int i = 0; i < mainActivity.scoreList1.getScoreList().size(); i++) {
-                score = mainActivity.scoreList1.getScoreList().get(i).grade;
-                if (score.toLowerCase().equals("f")) {
-                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
-                }
-                else if (score.toLowerCase().equals("d")) {
-                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
-                }
-                else if (score.toLowerCase().equals("c")) {
-                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
-                }
-                else if (score.toLowerCase().equals("b")) {
-                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
-                }
-                else if (score.toLowerCase().equals("a")) {
-                    b.setText(mainActivity.scoreList1.getScoreList().get(i).subject);
-                }
-            }
-            a.setVisibility(View.VISIBLE);
-            b.setVisibility(View.VISIBLE);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        }
-        recyclerView = v.findViewById(R.id.resultList);
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(divider);
-        Button addMarks = v.findViewById(R.id.addMarks);
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
+        recyclerView = view.findViewById(R.id.resultList);
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
+        Button addMarks = view.findViewById(R.id.addMarks);
         addMarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment = new addMarks();
+                Fragment fragment = new AddMarksFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }
         });
-        setAdapter();
-        // Inflate the layout for this fragment
-        return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reference.child(auth.getCurrentUser().getUid()).child("scores").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                scoreIds = new ArrayList<>();
+                scores = new ArrayList<>();
+                for (DataSnapshot taskSnapshot: snapshot.getChildren()) {
+                    scoreIds.add(taskSnapshot.getKey());
+                    scores.add(taskSnapshot.getValue(Score.class));
+                }
+//                if (scores.size() != 0) {
+//                    for (int i = 0; i < scores.size(); i++) {
+//                        String score = scores.get(i).grade;
+//                        switch (score.toUpperCase()) {
+//                            case "F":
+//                            case "D":
+//                            case "C":
+//                            case "B":
+//                            case "A":
+//                                b.setText(scores.get(i).subject.toUpperCase());
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                    }
+//                    a.setVisibility(View.VISIBLE);
+//                    b.setVisibility(View.VISIBLE);
+//                }
+//                else {
+//                    a.setVisibility(View.GONE);
+//                    b.setVisibility(View.GONE);
+//                }
+                setAdapter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void setAdapter() {
-        TrackerRecyclerView adapter = new TrackerRecyclerView(mainActivity.scoreList1.getScoreList());
+        TrackerAdapter adapter = new TrackerAdapter(scoreIds, scores, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

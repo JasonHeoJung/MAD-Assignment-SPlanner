@@ -2,6 +2,8 @@ package sg.edu.np.mad.splanner;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,55 +14,77 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ToDoListFragment extends Fragment implements ToDoListRecyclerView.OnNoteListener {
-
-    MainActivity mainActivity;
-    private Fragment fragment;
-    private Button addTask;
+public class ToDoListFragment extends Fragment {
+    private FirebaseAuth auth;
+    private DatabaseReference reference;
     private RecyclerView recyclerView;
-    private task t;
+    private ArrayList<String> taskIds;
+    private ArrayList<Task> tasks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_to_do_list, container, false);
-        mainActivity = (MainActivity) getActivity();
-        recyclerView = v.findViewById(R.id.taskList);
-        addTask = v.findViewById(R.id.addMoreTask);
-        RecyclerView recyclerView = v.findViewById(R.id.taskList);
-
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(divider);
-        addTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragment = new addTask();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-            }
-        });
-        // Inflate the layout for this fragment
-        setAdapter();
-        return v;
-    }
-
-    private void setAdapter() {
-        ToDoListRecyclerView adapter = new ToDoListRecyclerView(mainActivity.taskList1.getTaskList(), this);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
+        return inflater.inflate(R.layout.fragment_to_do_list, container, false);
     }
 
     @Override
-    public void onNoteClick(int position) {
-        t = mainActivity.taskList1.getTaskList().get(position);
-        mainActivity.taskList1.getTaskList().remove(t);
-        fragment = new ToDoListFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
+        recyclerView = view.findViewById(R.id.taskList);
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+
+        Button addTask = view.findViewById(R.id.addMoreTask);
+        addTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new AddTaskFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        reference.child(auth.getCurrentUser().getUid()).child("tasks").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                taskIds = new ArrayList<>();
+                tasks = new ArrayList<>();
+                for (DataSnapshot taskSnapshot: snapshot.getChildren()) {
+                    taskIds.add(taskSnapshot.getKey());
+                    tasks.add(taskSnapshot.getValue(Task.class));
+                }
+                setAdapter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void setAdapter() {
+        ToDoListAdapter adapter = new ToDoListAdapter(taskIds, tasks, getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
     }
 }

@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner">
         <activity
-            android:name=".TrackerRecyclerView"
-            android:exported="false" />
-        <activity
-            android:name=".ToDoListRecyclerView"
-            android:exported="false" />
-        <activity
             android:name=".UserProfile"
             android:exported="false" />
         <activity
