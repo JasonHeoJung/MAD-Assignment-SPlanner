@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddTaskFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference reference;
-    MainActivity mainActivity;
     private EditText taskName;
     private EditText date;
 
