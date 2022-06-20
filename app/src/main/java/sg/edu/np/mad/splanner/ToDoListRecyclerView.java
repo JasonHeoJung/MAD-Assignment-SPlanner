@@ -64,11 +64,6 @@ public class ToDoListRecyclerView extends RecyclerView.Adapter<ToDoListRecyclerV
         String name = taskList.get(position).getTaskName();
         String dd = taskList.get(position).getDueDate();
 
-        if (position >= 1) {
-            holder.title.setVisibility(View.GONE);
-            holder.title2.setVisibility(View.GONE);
-        }
-
         holder.taskName.setText(name);
         holder.dueDate.setText(dd);
     }
