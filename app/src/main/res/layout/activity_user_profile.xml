@@ -10,33 +10,13 @@
         android:id="@+id/profUsername"
         android:layout_width="179dp"
         android:layout_height="22dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="48dp"
         android:text="username"
+        android:textAlignment="center"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/profPassword"
-        android:layout_width="179dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="16dp"
-        android:text="password"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profUsername" />
 
     <Button
         android:id="@+id/logoutButton"
