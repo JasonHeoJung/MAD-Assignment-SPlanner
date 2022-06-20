@@ -31,7 +31,6 @@ public class TrackerFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<String> scoreIds;
     private ArrayList<Score> scores;
-    private TextView a, b;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,8 +44,6 @@ public class TrackerFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
-        a = view.findViewById(R.id.title1);
-        b = view.findViewById(R.id.weakest);
         recyclerView = view.findViewById(R.id.resultList);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
@@ -73,28 +70,28 @@ public class TrackerFragment extends Fragment {
                     scoreIds.add(taskSnapshot.getKey());
                     scores.add(taskSnapshot.getValue(Score.class));
                 }
-                if (scores.size() != 0) {
-                    for (int i = 0; i < scores.size(); i++) {
-                        String score = scores.get(i).grade;
-                        switch (score.toUpperCase()) {
-                            case "F":
-                            case "D":
-                            case "C":
-                            case "B":
-                            case "A":
-                                b.setText(scores.get(i).subject.toUpperCase());
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                    a.setVisibility(View.VISIBLE);
-                    b.setVisibility(View.VISIBLE);
-                }
-                else {
-                    a.setVisibility(View.GONE);
-                    b.setVisibility(View.GONE);
-                }
+//                if (scores.size() != 0) {
+//                    for (int i = 0; i < scores.size(); i++) {
+//                        String score = scores.get(i).grade;
+//                        switch (score.toUpperCase()) {
+//                            case "F":
+//                            case "D":
+//                            case "C":
+//                            case "B":
+//                            case "A":
+//                                b.setText(scores.get(i).subject.toUpperCase());
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                    }
+//                    a.setVisibility(View.VISIBLE);
+//                    b.setVisibility(View.VISIBLE);
+//                }
+//                else {
+//                    a.setVisibility(View.GONE);
+//                    b.setVisibility(View.GONE);
+//                }
                 setAdapter();
             }
 
