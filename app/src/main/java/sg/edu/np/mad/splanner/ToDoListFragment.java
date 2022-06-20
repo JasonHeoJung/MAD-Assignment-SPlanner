@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,10 @@ public class ToDoListFragment extends Fragment implements ToDoListRecyclerView.O
         mainActivity = (MainActivity) getActivity();
         recyclerView = v.findViewById(R.id.taskList);
         addTask = v.findViewById(R.id.addMoreTask);
+        RecyclerView recyclerView = v.findViewById(R.id.taskList);
+
+        RecyclerView.ItemDecoration divider = new DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(divider);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

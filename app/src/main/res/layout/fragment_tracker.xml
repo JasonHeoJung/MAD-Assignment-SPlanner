@@ -11,9 +11,12 @@
         android:id="@+id/resultList"
         android:layout_width="411dp"
         android:layout_height="603dp"
-        android:layout_marginTop="128dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.585" />
 
     <Button
         android:id="@+id/addMarks"
@@ -22,6 +25,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
         android:text="+"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
