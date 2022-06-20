@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment {
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
-
         RecyclerView recyclerView = view.findViewById(R.id.listImage);
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
