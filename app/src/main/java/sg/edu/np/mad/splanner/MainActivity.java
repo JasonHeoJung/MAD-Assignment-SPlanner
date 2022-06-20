@@ -14,17 +14,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    public ArrayList<Task> taskList = new ArrayList<>();
-    public TaskList taskList1;
-    public ArrayList<Score> scoreList = new ArrayList<>();
-    public ScoreList scoreList1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        taskList1 = new TaskList(taskList);
-        scoreList1 = new ScoreList(scoreList);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
 
