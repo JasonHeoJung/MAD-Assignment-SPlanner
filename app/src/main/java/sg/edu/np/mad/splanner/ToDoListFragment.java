@@ -27,6 +27,7 @@ public class ToDoListFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private RecyclerView recyclerView;
+    private ArrayList<String> taskIds;
     private ArrayList<Task> tasks;
 
     @Override
@@ -59,9 +60,11 @@ public class ToDoListFragment extends Fragment {
         reference.child(auth.getCurrentUser().getUid()).child("tasks").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                taskIds = new ArrayList<>();
                 tasks = new ArrayList<>();
-                for (DataSnapshot eventSnapshot: snapshot.getChildren()) {
-                    tasks.add(eventSnapshot.getValue(Task.class));
+                for (DataSnapshot taskSnapshot: snapshot.getChildren()) {
+                    taskIds.add(taskSnapshot.getKey());
+                    tasks.add(taskSnapshot.getValue(Task.class));
                 }
                 setAdapter();
             }
@@ -74,7 +77,7 @@ public class ToDoListFragment extends Fragment {
     }
 
     private void setAdapter() {
-        ToDoListAdapter adapter = new ToDoListAdapter(tasks);
+        ToDoListAdapter adapter = new ToDoListAdapter(taskIds, tasks, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
