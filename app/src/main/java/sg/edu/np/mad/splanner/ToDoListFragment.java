@@ -2,6 +2,8 @@ package sg.edu.np.mad.splanner;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,21 +14,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class ToDoListFragment extends Fragment implements ToDoListRecyclerView.OnNoteListener {
-
+public class ToDoListFragment extends Fragment {
     MainActivity mainActivity;
     private Fragment fragment;
-    private Button addTask;
     private RecyclerView recyclerView;
-    private Task t;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_to_do_list, container, false);
+        return inflater.inflate(R.layout.fragment_to_do_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         mainActivity = (MainActivity) getActivity();
-        recyclerView = v.findViewById(R.id.taskList);
-        addTask = v.findViewById(R.id.addMoreTask);
+        recyclerView = view.findViewById(R.id.taskList);
+
+        Button addTask = view.findViewById(R.id.addMoreTask);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,22 +42,22 @@ public class ToDoListFragment extends Fragment implements ToDoListRecyclerView.O
         });
         // Inflate the layout for this fragment
         setAdapter();
-        return v;
     }
 
     private void setAdapter() {
-        ToDoListRecyclerView adapter = new ToDoListRecyclerView(mainActivity.taskList1.getTaskList(), this);
+        ToDoListAdapter adapter = new ToDoListAdapter(mainActivity.taskList1.getTaskList());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onNoteClick(int position) {
-        t = mainActivity.taskList1.getTaskList().get(position);
-        mainActivity.taskList1.getTaskList().remove(t);
-        fragment = new ToDoListFragment();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-    }
+//    @Override
+//    public void onNoteClick(int position) {
+//        Task task = mainActivity.taskList1.getTaskList().get(position);
+//        mainActivity.taskList1.getTaskList().remove(task);
+//        fragment = new ToDoListFragment();
+//        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+//    }
 }
