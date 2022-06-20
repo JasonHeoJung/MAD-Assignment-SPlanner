@@ -30,7 +30,7 @@ public class ToDoListFragment extends Fragment implements ToDoListRecyclerView.O
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment = new addTask();
+                fragment = new AddTaskFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }
         });

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class addTask extends Fragment {
+public class AddTaskFragment extends Fragment {
 
     MainActivity mainActivity;
     private Fragment fragment;
