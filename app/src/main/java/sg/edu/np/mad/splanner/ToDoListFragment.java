@@ -28,7 +28,8 @@ public class ToDoListFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private RecyclerView recyclerView;
-    private task t;
+    private ArrayList<String> taskIds;
+    private ArrayList<Task> tasks;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
