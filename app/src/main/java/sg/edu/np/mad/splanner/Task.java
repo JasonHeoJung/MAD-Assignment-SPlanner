@@ -4,6 +4,9 @@ public class Task {
     String taskName;
     String dueDate;
 
+    public Task() {
+    }
+
     public Task(String taskName, String dueDate) {
         this.taskName = taskName;
         this.dueDate = dueDate;
