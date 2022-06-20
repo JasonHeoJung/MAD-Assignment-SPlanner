@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class addMarks extends Fragment {
+public class AddMarksFragment extends Fragment {
 
     private Fragment fragment;
     private Button addSubject;

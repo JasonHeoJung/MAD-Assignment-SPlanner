@@ -60,7 +60,7 @@ public class TrackerFragment extends Fragment {
         addMarks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment = new addMarks();
+                fragment = new AddMarksFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }
         });
