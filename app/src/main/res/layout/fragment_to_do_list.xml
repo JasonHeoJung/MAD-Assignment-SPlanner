@@ -9,8 +9,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="412dp"
+        android:layout_height="677dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addMoreTask"
