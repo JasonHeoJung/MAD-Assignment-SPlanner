@@ -90,8 +90,8 @@ public class TrackerFragment extends Fragment {
                     }
                     a.setVisibility(View.VISIBLE);
                     b.setVisibility(View.VISIBLE);
-
-                } else {
+                }
+                else {
                     a.setVisibility(View.GONE);
                     b.setVisibility(View.GONE);
                 }
