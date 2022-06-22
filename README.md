@@ -17,3 +17,16 @@ Yo ming - Did the layout and part of the database of homepage and did the
 functions for Timer
 Jason - did the layout for profile page, login and sign up page
 
+User guides:
+1. Sign up for the application
+2. Navigate the application using the fragment bar
+3. CLick on timetable icon
+4. Enter your timetable for each day
+5. Click on To Do List icon
+6. Enter in your tasks
+7. If task is completed, you can click completed
+8. Click on Timer icon
+9. Enter in your timing
+10. Click start
+11. Click on the Exam Tracker icon
+12. Enter your grades for your subjects
