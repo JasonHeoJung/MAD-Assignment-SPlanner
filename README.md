@@ -2,7 +2,7 @@ Team members:
 1. Justin 
 2. Jason
 3. Guo Heng
-4. Yo Ming
+4. Yo Ming (S10223100F)
 5. Natalie (S10227870K)
 
 Description of app:
@@ -13,8 +13,8 @@ Roles and Contributions:
 Natalie - Did the layout of the timetable
 Justin - Did the database of the whole application
 Guo heng - Did the layout of to do list and subject tracker
-Yo ming - Did the layout and part of the database of homepage and did the 
-functions for Timer
+Yo ming - Did the layout, part of the database of homepage, the 
+functions for Timer and The navigation bar to move between fragment activities
 Jason - did the layout for profile page, login and sign up page
 
 User guides:
