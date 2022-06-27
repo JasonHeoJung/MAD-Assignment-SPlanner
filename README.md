@@ -1,7 +1,7 @@
 Team members:
 1. Justin (S10227943J)
 2. Jason
-3. Guo Heng
+3. Guo Heng (S10223608C)
 4. Yo Ming (S10223100F)
 5. Natalie (S10227870K)
 
