@@ -11,15 +11,12 @@
         android:layout_width="365dp"
         android:layout_height="89dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/custom_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/DueDate"
@@ -27,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Task"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="12dp"
             android:text="TextView"
             android:textSize="14sp" />
@@ -38,21 +35,22 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="19dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
             android:text="TextView"
             android:textSize="20sp" />
 
         <Button
             android:id="@+id/status"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="156dp"
-            android:layout_marginTop="22dp"
-            android:layout_toEndOf="@+id/DueDate"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="13dp"
             android:text="Completed"
             android:textSize="12sp" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
