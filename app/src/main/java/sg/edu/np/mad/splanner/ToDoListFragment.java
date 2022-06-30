@@ -45,8 +45,6 @@ public class ToDoListFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference("users");
         recyclerView = view.findViewById(R.id.taskList);
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
         Button addTask = view.findViewById(R.id.addMoreTask);
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
