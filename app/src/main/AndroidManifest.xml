@@ -34,9 +34,6 @@
             android:name=".TimetableDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".Timetable"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

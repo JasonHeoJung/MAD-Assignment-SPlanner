@@ -35,6 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
+        android:descendantFocusability="blocksDescendants"
         android:id="@+id/edittime"
         android:layout_width="341dp"
         android:layout_height="49dp"
@@ -42,7 +43,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="none"
         android:hint="Time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
