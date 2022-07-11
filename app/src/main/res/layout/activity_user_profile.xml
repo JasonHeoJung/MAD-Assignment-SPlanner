@@ -6,13 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
+    <Button
+        android:id="@+id/Edit"
+        android:layout_width="331dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="500dp"
+        android:backgroundTint="#67B7D1"
+        android:text="Edit Profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/resetPass"
+        android:layout_width="331dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#67B7D1"
+        android:text="Reset Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Edit" />
+
     <TextView
-        android:id="@+id/profUsername"
-        android:layout_width="179dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="48dp"
-        android:text="username"
-        android:textAlignment="center"
+        android:id="@+id/profEmail"
+        android:layout_width="269dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="12dp"
+        android:text="Your Email"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EmailTxt" />
+
+    <TextView
+        android:id="@+id/EmailTxt"
+        android:layout_width="269dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="184dp"
+        android:text="Email"
+        android:textAlignment="viewStart"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,13 +54,22 @@
 
     <Button
         android:id="@+id/logoutButton"
-        android:layout_width="226dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="156dp"
+        android:layout_width="331dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#67B7D1"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/resetPass" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
