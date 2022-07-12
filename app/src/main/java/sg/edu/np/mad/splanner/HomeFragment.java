@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,19 +25,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
 public class HomeFragment extends Fragment {
 
-    private Button profile;
+    private ImageButton profile;
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private ArrayList<Event> schedule;
     private Intent retrieveIntent;
     private String dayOfWeek;
     private TextView noSchedule;
+    private TextView weekEndText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +51,7 @@ public class HomeFragment extends Fragment {
         retrieveIntent = getActivity().getIntent();
         schedule = new ArrayList<>();
         noSchedule = view.findViewById(R.id.noSchedule);
+        weekEndText = view.findViewById(R.id.weekEndText);
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
@@ -72,10 +76,10 @@ public class HomeFragment extends Fragment {
             dayOfWeek = "Friday";
         }
         else {
-            noSchedule.setVisibility(View.VISIBLE);
-            noSchedule.setText("No schedule on the weekends, showing next available day's");
+            weekEndText.setText("No schedule on the weekends, showing next available day's");
             dayOfWeek = "Monday";
         }
+        noSchedule.setText(dayOfWeek);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
