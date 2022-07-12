@@ -47,7 +47,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("Test", auth.getCurrentUser().getUid() + "");
                 reference.child(auth.getCurrentUser().getUid()).child("records").child(recordIds.get(holder.getAdapterPosition())).removeValue();
             }
         });
