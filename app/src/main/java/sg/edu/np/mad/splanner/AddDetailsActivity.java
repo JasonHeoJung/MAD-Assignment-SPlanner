@@ -3,6 +3,8 @@ package sg.edu.np.mad.splanner;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,12 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class AddDetailsActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     int hour, min;
+    int dayofweek;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,7 @@ public class AddDetailsActivity extends AppCompatActivity {
                 String moduleName = etModule.getText().toString();
                 String className = etClass.getText().toString();
                 String time = etTime.getText().toString();
-                Toast.makeText(getApplicationContext(), "You have not filled up one or more values", Toast.LENGTH_LONG).show();
+
                 if(moduleName.length() == 0 || className.length() == 0 || time.length() == 0){
                     if(moduleName.length() == 0 ){
                         etModule.setError("Empty");
@@ -84,11 +88,48 @@ public class AddDetailsActivity extends AppCompatActivity {
                     if(time.length() == 0){
                         etTime.setError("Empty");
                     }
+                    Toast.makeText(getApplicationContext(), "You have not filled up one or more values", Toast.LENGTH_LONG).show();
                 }
-
                 else{
                     DatabaseReference scheduleRef = reference.child(auth.getCurrentUser().getUid()).child("schedule").child(getIntent().getStringExtra("day")).push();
+                    if(getIntent().getStringExtra("day") == "Monday"){
+                        dayofweek= Calendar.MONDAY;
+                    }
+                    else if(getIntent().getStringExtra("day") == "Tuesday"){
+                        dayofweek = Calendar.TUESDAY;
+                    }
+                    else if(getIntent().getStringExtra("day") == "Wednesday"){
+                        dayofweek = Calendar.WEDNESDAY;
+                    }
+                    else if(getIntent().getStringExtra("day") == "Thursday"){
+                        dayofweek = Calendar.THURSDAY;
+                    }
+                    else{
+                        dayofweek = Calendar.FRIDAY;
+                    }
+
+
                     scheduleRef.setValue(new Event(moduleName, className, time));
+                    Intent intent = new Intent(AddDetailsActivity.this, Notification.class);
+                    intent.putExtra("NotificationID", 1);
+                    intent.putExtra("mod", moduleName);
+                    intent.putExtra("class", className);
+                    PendingIntent alarmIntent = PendingIntent.getBroadcast(AddDetailsActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                    AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    switch(view.getId()){
+                        case R.id.addsched:
+                            int h = hour;
+                            int m = min;
+
+                            Calendar starttime = Calendar.getInstance();
+                            starttime.set(Calendar.DAY_OF_WEEK, dayofweek);
+                            starttime.set(Calendar.HOUR_OF_DAY, h);
+                            starttime.set(Calendar.MINUTE, m);
+                            starttime.set(Calendar.SECOND, 0);
+                            long alarmStartTime = starttime.getTimeInMillis();
+
+                            alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
+                    }
                     finish();
                 }
 

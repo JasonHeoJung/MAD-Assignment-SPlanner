@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
 
     private void setAdapter() {
         RecyclerView recyclerView = getActivity().findViewById(R.id.listImage);
-        ScheduleAdapter adapter = new ScheduleAdapter(schedule);
+        ScheduleAdapter adapter = new ScheduleAdapter(schedule, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 
         recyclerView.setLayoutManager(layoutManager);
