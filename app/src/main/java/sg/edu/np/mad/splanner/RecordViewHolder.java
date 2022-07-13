@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecordViewHolder extends RecyclerView.ViewHolder {
     TextView recordName;
     TextView recordComment;
+    TextView timeSet;
     TextView timeTaken;
     Button delete;
 
@@ -16,6 +17,7 @@ public class RecordViewHolder extends RecyclerView.ViewHolder {
         super(view);
         recordName = view.findViewById(R.id.recordName);
         recordComment = view.findViewById(R.id.recordComment);
+        timeSet = view.findViewById(R.id.timeSet);
         timeTaken = view.findViewById(R.id.timeTaken);
         delete = view.findViewById(R.id.delete);
     }

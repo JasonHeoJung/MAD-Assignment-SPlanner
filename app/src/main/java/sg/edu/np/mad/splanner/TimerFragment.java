@@ -30,6 +30,7 @@ public class TimerFragment extends Fragment {
     private Button mButtonStartPause;
     private Button mButtonReset;
     private Button mRecord;
+    private Button mFinish;
     private TextView mTimesUp;
     private String inputTime;
 
@@ -49,6 +50,7 @@ public class TimerFragment extends Fragment {
 
         mButtonSet = view.findViewById(R.id.button_set);
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
+        mFinish = view.findViewById(R.id.finishBtn);
         mButtonReset = view.findViewById(R.id.button_reset);
         mRecord = view.findViewById(R.id.button_recordList);
         mTimesUp = view.findViewById(R.id.times_up_text);
@@ -113,6 +115,34 @@ public class TimerFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        mFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+                alert.setTitle("Save Record?");
+                alert.setMessage("Would you like to save your record for this practice?");
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent myIntent = new Intent(getActivity(), AddRecordActivity.class);
+                        Bundle timeContent = new Bundle();
+                        timeContent.putInt("timeSet", Integer.valueOf(inputTime));
+                        timeContent.putString("timeTaken", String.valueOf((Integer.valueOf(inputTime) * 60)-(mTimerLeftInMillis * 60)/60000));
+                        myIntent.putExtras(timeContent);
+                        startActivity(myIntent);
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getActivity(), "Time not recorded", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.show();
+            }
+        });
         updateCountDownText();
         return view;
     }
@@ -137,27 +167,6 @@ public class TimerFragment extends Fragment {
                 MediaPlayer music = MediaPlayer.create(getActivity(), R.raw.times_up);
                 music.start();
                 updateWatchInterface();
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-
-                alert.setTitle("Save Record?");
-                alert.setMessage("Would you like to save your record for this practice?");
-                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent myIntent = new Intent(getActivity(), AddRecordActivity.class);
-                        Bundle timeContent = new Bundle();
-                        timeContent.putInt("timeTaken", Integer.valueOf(inputTime));
-                        myIntent.putExtras(timeContent);
-                        startActivity(myIntent);
-                    }
-                });
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getActivity(), "Time not recorded", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alert.show();
             }
         }.start();
         mTimerRunning = true;
@@ -201,18 +210,21 @@ public class TimerFragment extends Fragment {
             mButtonReset.setEnabled(false);
             mButtonReset.setBackgroundColor(Color.GRAY);
             mTimesUp.setVisibility(View.INVISIBLE);
+            mFinish.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Pause");
         }
         else {
             mEditTextInput.setEnabled(true);
             mButtonSet.setEnabled(true);
             mButtonSet.setBackgroundColor(Color.parseColor("#9365E8"));
+            mFinish.setVisibility(View.VISIBLE);
             mTimesUp.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Start");
 
             if (mTimerLeftInMillis < 1000) {
                 mButtonStartPause.setEnabled(false);
                 mButtonStartPause.setBackgroundColor(Color.GRAY);
+                mFinish.setVisibility(View.VISIBLE);
                 mTimesUp.setVisibility(View.VISIBLE);
             }
             else {

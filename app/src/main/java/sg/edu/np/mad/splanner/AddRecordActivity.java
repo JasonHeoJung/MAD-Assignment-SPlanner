@@ -20,6 +20,7 @@ public class AddRecordActivity extends AppCompatActivity {
     private Button addRecordbtn;
     private Button cancelBtn;
     private TextView timeTaken;
+    private TextView timeSet;
 
     private String getName;
     private String getComment;
@@ -40,13 +41,19 @@ public class AddRecordActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("users");
 
         Intent receiving = getIntent();
-        Integer timeValue = receiving.getIntExtra("timeTaken", 0);
+        Integer timeValue = receiving.getIntExtra("timeSet", 0);
+        Integer timeUsed = Integer.valueOf(receiving.getStringExtra("timeTaken"));
         timeTaken = findViewById(R.id.timeTaken);
-        if (timeValue == 1){
-            timeTaken.setText(timeValue + " Minute");
+        timeSet = findViewById(R.id.timeSet);
+        timeSet.setText(timeValue + " min");
+
+        if (timeUsed < 60){
+            timeTaken.setText(timeUsed + " s");
         }
-        else{
-            timeTaken.setText(timeValue + " Minutes");
+        else {
+            Integer minutes = timeUsed/60;
+            Integer seconds = timeUsed%60;
+            timeTaken.setText(minutes + " min " + seconds + " s");
         }
 
 
@@ -68,7 +75,7 @@ public class AddRecordActivity extends AppCompatActivity {
                 }
                 else {
                     DatabaseReference tasksRef = reference.child(auth.getCurrentUser().getUid()).child("records").push();
-                    tasksRef.setValue(new Record(getName, getComment, String.valueOf(timeValue)));
+                    tasksRef.setValue(new Record(getName, getComment, String.valueOf(timeValue), String.valueOf(timeUsed)));
                     finish();
                 }
             }

@@ -3,15 +3,17 @@ package sg.edu.np.mad.splanner;
 public class Record {
     String recordName;
     String recordComment;
-    String timeValue;
+    String timeSet;
+    String timeTaken;
 
     public Record(){
     }
 
-    public Record(String recordName, String recordComment, String timeValue){
+    public Record(String recordName, String recordComment, String timeSet, String timeTaken){
         this.recordName = recordName;
         this.recordComment = recordComment;
-        this.timeValue = timeValue;
+        this.timeSet = timeSet;
+        this.timeTaken = timeTaken;
     }
 
     public String getRecordName() {
@@ -31,10 +33,14 @@ public class Record {
     }
 
     public String getTimeValue() {
-        return timeValue;
+        return timeSet;
     }
 
-    public void setTimeValue(String timeValue) {
-        this.timeValue = timeValue;
+    public void setTimeValue(String timeSet) {
+        this.timeSet = timeSet;
     }
+
+    public String getTimeTaken() { return timeTaken; }
+
+    public void setTimeTaken(String timeTaken) { this.timeTaken = timeTaken; }
 }

@@ -24,6 +24,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
     private ArrayList<String> recordIds;
     private FirebaseAuth auth;
     private DatabaseReference reference;
+    private Integer timeUsed;
 
     public RecordAdapter(ArrayList<String> recordIds, ArrayList<Record> record){
         this.recordIds = recordIds;
@@ -43,7 +44,16 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordViewHolder> {
         reference = FirebaseDatabase.getInstance().getReference("users");
         holder.recordName.setText("Name: "+ record.get(position).getRecordName());
         holder.recordComment.setText("Comments: "+ record.get(position).getRecordComment());
-        holder.timeTaken.setText("Time Taken: "+ record.get(position).getTimeValue() + " min");
+        holder.timeSet.setText("Time Set: "+ record.get(position).getTimeValue() + " min");
+        timeUsed = Integer.valueOf(record.get(position).getTimeTaken());
+        if (timeUsed < 60){
+            holder.timeTaken.setText("Time Taken: " + timeUsed + " s");
+        }
+        else {
+            Integer minutes = timeUsed/60;
+            Integer seconds = timeUsed%60;
+            holder.timeTaken.setText("Time Taken: " + minutes + " min " + seconds + " s");
+        }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
