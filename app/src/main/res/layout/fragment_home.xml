@@ -68,16 +68,12 @@
             android:id="@+id/profile"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="346dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="182dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/user_avatar"
             android:contentDescription="@string/prompt_email"
-            app:layout_constraintBottom_toTopOf="@+id/noSchedule"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/background"

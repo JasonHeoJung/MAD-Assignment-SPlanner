@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".UserProfile">
 
+    <TextView
+        android:id="@+id/NameTxt"
+        android:layout_width="269dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="184dp"
+        android:text="Name"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/Edit"
         android:layout_width="331dp"
@@ -32,7 +44,7 @@
         android:id="@+id/profEmail"
         android:layout_width="269dp"
         android:layout_height="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:text="Your Email"
         android:textAlignment="viewStart"
         android:textSize="16sp"
@@ -41,16 +53,28 @@
         app:layout_constraintTop_toBottomOf="@+id/EmailTxt" />
 
     <TextView
+        android:id="@+id/profName"
+        android:layout_width="269dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="4dp"
+        android:text="Your Name"
+        android:textAlignment="viewStart"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameTxt" />
+
+    <TextView
         android:id="@+id/EmailTxt"
         android:layout_width="269dp"
         android:layout_height="24dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="8dp"
         android:text="Email"
         android:textAlignment="viewStart"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profName" />
 
     <Button
         android:id="@+id/logoutButton"
@@ -64,12 +88,14 @@
         app:layout_constraintTop_toBottomOf="@+id/resetPass" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imageView2"
+        android:layout_width="148dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/user_avatar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

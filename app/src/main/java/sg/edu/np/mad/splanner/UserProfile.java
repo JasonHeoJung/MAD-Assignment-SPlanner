@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserProfile extends AppCompatActivity {
     private Button logoutButton;
     private Button resetButton;
-    private TextView profUsername;
+    private TextView profEmail;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -32,6 +32,9 @@ public class UserProfile extends AppCompatActivity {
 
         logoutButton = findViewById(R.id.logoutButton);
         resetButton = findViewById(R.id.resetPass);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,37 +46,34 @@ public class UserProfile extends AppCompatActivity {
                 finish();
             }
         });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        profUsername = findViewById(R.id.profEmail);
-        profUsername.setText(user.getEmail());
+        profEmail = findViewById(R.id.profEmail);
+        profEmail.setText(user.getEmail());
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText resetMail = new EditText(v.getContext());
+                final EditText resetPassword = new EditText(v.getContext());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-                passwordResetDialog.setTitle("Reset Password?");
-                passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
-                passwordResetDialog.setView(resetMail);
+                passwordResetDialog.setTitle("Reset Password ?");
+                passwordResetDialog.setMessage("Enter New Password > 6 Characters");
+                passwordResetDialog.setView(resetPassword);
 
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String mail = resetMail.getText().toString();
-                        firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        String newPassword = resetPassword.getText().toString();
+                        user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(UserProfile.this, "Reset Link Sent To Your Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UserProfile.this, "Password Reset Successfully", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(UserProfile.this, "Error! Reset Link Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UserProfile.this, "Password Reset Failed", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
                     }
                 });
                 passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -82,6 +82,7 @@ public class UserProfile extends AppCompatActivity {
 
                     }
                 });
+                passwordResetDialog.create().show();
             }
         });
     }
