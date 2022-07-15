@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment {
                             schedule.add(eventSnapshot.getValue(Event.class));
                         }
                         setAdapter();
+                        weekEndText.setText((schedule.isEmpty() ? "There are no schedule today, go make some!" : ""));
                     }
 
 
