@@ -24,6 +24,7 @@ public class UserProfile extends AppCompatActivity {
     private Button editButton;
     private Button resetButton;
     private TextView profEmail;
+    private TextView profName;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -37,6 +38,11 @@ public class UserProfile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        profName = findViewById(R.id.profName);
+        profName.setText(user.getDisplayName());
+        profEmail = findViewById(R.id.profEmail);
+        profEmail.setText(user.getEmail());
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +64,7 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(editIntent);
             }
         });
-        profEmail = findViewById(R.id.profEmail);
-        profEmail.setText(user.getEmail());
+
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override

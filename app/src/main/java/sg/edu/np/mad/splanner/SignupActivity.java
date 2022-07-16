@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
+    private EditText etUsername;
     private EditText etEmail;
     private EditText etPassword;
     private Button signupBtn;
@@ -37,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
         signupBtn = findViewById(R.id.signupBtn);
@@ -50,17 +52,20 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        etUsername.addTextChangedListener(tw);
         etEmail.addTextChangedListener(tw);
         etPassword.addTextChangedListener(tw);
 
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = etUsername.getText().toString();
                 String email = etEmail.getText().toString();
                 String password = etPassword.getText().toString();
 
                 pb.setVisibility(View.VISIBLE);
                 createUser(email, password);
+
                 pb.setVisibility(View.GONE);
             }
         });
@@ -74,11 +79,15 @@ public class SignupActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String username = etUsername.getText().toString();
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString();
 
             boolean valid = false;
 
+            if (username.trim().length() == 0) {
+                etUsername.setError("Name is Required");
+            }
             if (email.trim().length() == 0) {
                 etEmail.setError("Email is Required");
             }
