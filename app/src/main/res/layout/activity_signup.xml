@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
@@ -28,10 +29,31 @@
         android:layout_marginTop="106dp"
         android:layout_marginEnd="40dp"
         app:boxBackgroundColor="#00FFFFFF"
+        app:boxStrokeColor="#673AB7"
+        app:hintTextColor="#6200EE"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        app:boxBackgroundColor="#00FFFFFF"
         app:hintTextColor="#6200EE"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <EditText
             android:id="@+id/etEmail"
@@ -53,7 +75,7 @@
         app:hintTextColor="#6200EE"
         app:layout_constraintEnd_toEndOf="@+id/signupBtn"
         app:layout_constraintStart_toStartOf="@+id/signupBtn"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
         app:passwordToggleEnabled="false">
 
         <EditText
