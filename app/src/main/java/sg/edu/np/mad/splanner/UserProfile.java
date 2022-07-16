@@ -62,6 +62,7 @@ public class UserProfile extends AppCompatActivity {
                 editIntent.putExtra("name", user.getDisplayName());
                 editIntent.putExtra("email", user.getEmail());
                 startActivity(editIntent);
+                finish();
             }
         });
 
