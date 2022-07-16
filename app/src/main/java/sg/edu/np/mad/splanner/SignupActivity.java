@@ -24,6 +24,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -32,6 +37,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etPassword;
     private Button signupBtn;
     private ProgressBar pb;
+    private String userID;
+    FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 pb.setVisibility(View.VISIBLE);
-                createUser(email, password);
+                createUser(username, email, password);
 
                 pb.setVisibility(View.GONE);
             }
@@ -122,7 +129,7 @@ public class SignupActivity extends AppCompatActivity {
         }
     };
 
-    private void createUser(String email, String password) {
+    private void createUser(String username, String email, String password) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -134,6 +141,10 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                userID = auth.getCurrentUser().getUid();
+                                DocumentReference documentReference = fStore.collection("users").document(userID);
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("Uname", username);
                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
