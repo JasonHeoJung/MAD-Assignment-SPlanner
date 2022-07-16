@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
     private Intent retrieveIntent;
     private String dayOfWeek;
     private TextView noSchedule;
-    private TextView weekEndText;
+    /*private TextView weekEndText;*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             dayOfWeek = "Friday";
         }
         else {
-            weekEndText.setText("No schedule on the weekends, showing next available day's");
+            /*weekEndText.setText("No schedule on the weekends, showing next available day's");*/
             dayOfWeek = "Monday";
         }
         noSchedule.setText(dayOfWeek);
@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment {
                             schedule.add(eventSnapshot.getValue(Event.class));
                         }
                         setAdapter();
-                        weekEndText.setText((schedule.isEmpty() ? "There are no schedule today, go make some!" : ""));
+                        /*weekEndText.setText((schedule.isEmpty() ? "There are no schedule today, go make some!" : ""));*/
                     }
 
 
