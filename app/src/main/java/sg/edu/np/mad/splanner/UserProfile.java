@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UserProfile extends AppCompatActivity {
     private Button logoutButton;
+    private Button editButton;
     private Button resetButton;
     private TextView profEmail;
     FirebaseAuth firebaseAuth;
@@ -31,6 +32,7 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         logoutButton = findViewById(R.id.logoutButton);
+        editButton = findViewById(R.id.Edit);
         resetButton = findViewById(R.id.resetPass);
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -44,6 +46,16 @@ public class UserProfile extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editIntent = new Intent(v.getContext(), EditProfile.class);
+                editIntent.putExtra("name", user.getDisplayName());
+                editIntent.putExtra("email", user.getEmail());
+                startActivity(editIntent);
             }
         });
         profEmail = findViewById(R.id.profEmail);

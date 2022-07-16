@@ -7,7 +7,7 @@
     tools:context=".EditProfile">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextName"
         android:layout_width="315dp"
         android:layout_height="45dp"
         android:layout_marginTop="40dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profImgView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextEmail"
         android:layout_width="315dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <ImageView
         android:id="@+id/profImgView"
@@ -50,5 +50,5 @@
         android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
