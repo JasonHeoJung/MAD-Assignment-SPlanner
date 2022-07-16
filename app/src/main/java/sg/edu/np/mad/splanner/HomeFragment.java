@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         retrieveIntent = getActivity().getIntent();
         schedule = new ArrayList<>();
         noSchedule = view.findViewById(R.id.noSchedule);
-        weekEndText = view.findViewById(R.id.weekEndText);
+        /*weekEndText = view.findViewById(R.id.weekEndText);*/
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
