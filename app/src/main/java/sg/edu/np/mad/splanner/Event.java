@@ -1,11 +1,14 @@
 package sg.edu.np.mad.splanner;
 
-public class Event {
+import java.util.Comparator;
+
+public class Event implements Comparable<Event>{
     public String module;
     public String location;
     public String timing;
 
-    public Event() {}
+    public Event() {
+    }
 
     public Event(String module, String location, String timing) {
         this.module = module;
@@ -36,4 +39,12 @@ public class Event {
     public void setTiming(String timing) {
         this.timing = timing;
     }
+
+    @Override
+    public int compareTo(Event event) {
+        return this.getTiming().compareTo(event.getTiming());
+    }
 }
+
+
+
