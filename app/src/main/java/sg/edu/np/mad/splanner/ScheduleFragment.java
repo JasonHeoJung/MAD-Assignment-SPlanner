@@ -41,9 +41,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.collection.LLRBNode;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import sg.edu.np.mad.splanner.databinding.ActivityMainBinding;
 
@@ -53,7 +57,8 @@ public class ScheduleFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<String> schedID;
     private ArrayList<Event> schedule;
-    private String nowday="Monday";
+    Calendar calender = Calendar.getInstance();
+    private String nowday = "Monday";
     private ActivityMainBinding binding;
     private int notificationid = 1;
 
@@ -93,6 +98,59 @@ public class ScheduleFragment extends Fragment {
             day.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    for (Button b: dayList) {
+                            if(b == day){
+                                int colors = Color.parseColor("#f1cb93");
+                                b.setBackgroundColor(colors);
+                            }
+                            else{
+                                int colors = Color.parseColor("#EAB361");
+                                b.setBackgroundColor(colors);
+                            }
+//                            Toast.makeText(getContext(), b.getText().toString(), Toast.LENGTH_SHORT).show();
+//                            if(b.getText().toString() == "Monday"){
+//                                int colors = Color.parseColor("#f1cb93");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            if(b.getText().toString() == "Tuesday"){
+//                                int colors = Color.parseColor("#ac89ed");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            if(b.getText().toString() == "Wednesday"){
+//                                int colors = Color.parseColor("#788ecf");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            if(b.getText().toString() == "Thursday"){
+//                                int colors = Color.parseColor("#80d6c2");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            if(b.getText().toString() == "Friday") {
+//                                int colors = Color.parseColor("#7ac9e8");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                        }
+//                        else{
+//                            if(b.getText().toString() == "Monday"){
+//                                int colors = Color.parseColor("#EAB361");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            else if(b.getText().toString() == "Tuesday"){
+//                                int colors = Color.parseColor("#9365E8");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            else if(b.getText().toString() == "Wednesday"){
+//                                int colors = Color.parseColor("#3F5CB3");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            else if(b.getText().toString() == "Thursday"){
+//                                int colors = Color.parseColor("#54C8AD");
+//                                b.setBackgroundColor(colors);
+//                            }
+//                            else{
+//                                int colors = Color.parseColor("#5BBCE3");
+//                                b.setBackgroundColor(colors);
+//                            }
+                    }
                     nowday = day.getText().toString();
                     reference.child(auth.getCurrentUser().getUid()).child("schedule").child(nowday).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -104,7 +162,7 @@ public class ScheduleFragment extends Fragment {
                                 schedID.add(eventSnapshot.getKey());
                                 schedule.add(eventSnapshot.getValue(Event.class));
                             }
-
+                            Collections.sort(schedule);
                             setAdapter();
                         }
 
@@ -133,11 +191,7 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        reference.child(auth.getCurrentUser().getUid());
-        reference.child("schedule");
-        reference.child(nowday);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(auth.getCurrentUser().getUid()).child("schedule").child(nowday).addListenerForSingleValueEvent(new ValueEventListener(){
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -150,7 +204,7 @@ public class ScheduleFragment extends Fragment {
 
 
                 }
-
+                Collections.sort(schedule);
                 setAdapter();
 
             }
@@ -165,34 +219,12 @@ public class ScheduleFragment extends Fragment {
 
 
     private void setAdapter() {
-        String color;
         ScheduleAdapter adapter = new ScheduleAdapter(schedule, getActivity());
-
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
-
-        RelativeLayout rl = recyclerView.findViewById(R.id.relativeLayout2);
-         if(nowday == "Monday"){
-                color ="#EAB361";
-            }
-            else if(nowday == "Tuesday"){
-                color="#9365E8";
-            }
-            else if(nowday == "Wednesday"){
-                color ="#3F5CB3";
-            }
-            else if(nowday == "Thursday"){
-                color="#54C8AD";
-            }
-            else{
-                color ="#5BBCE3";
-            }
-
-
     }
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
@@ -205,7 +237,7 @@ public class ScheduleFragment extends Fragment {
 
             schedule.remove(viewHolder.getAdapterPosition());
             String id = schedID.get(viewHolder.getAdapterPosition());
-            Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
             reference.child(auth.getCurrentUser().getUid()).child("schedule").child(nowday).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
