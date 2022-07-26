@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +28,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -42,9 +38,9 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private ArrayList<Event> schedule;
-    private Intent retrieveIntent;
+    Intent retrieveIntent;
     private String dayOfWeek;
-    private TextView noSchedule;
+    TextView noSchedule;
     StorageReference storageReference;
     /*private TextView weekEndText;*/
 
@@ -89,20 +85,12 @@ public class HomeFragment extends Fragment {
         }
         noSchedule.setText(dayOfWeek);
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UserProfile.class);
-                startActivity(intent);
-            }
+        profile.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), UserProfile.class);
+            startActivity(intent);
         });
         StorageReference profileRef = storageReference.child("users/"+auth.getCurrentUser().getUid()+"profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(profile);
-            }
-        });
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
 
         return view;
     }

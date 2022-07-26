@@ -92,6 +92,12 @@ public class EditProfile extends AppCompatActivity {
             public void onClick(View v) {
                 //open gallery
                 Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profileImage);
+                    }
+                });
                 ProfImgResultLauncher.launch(openGalleryIntent);
             }
         });
