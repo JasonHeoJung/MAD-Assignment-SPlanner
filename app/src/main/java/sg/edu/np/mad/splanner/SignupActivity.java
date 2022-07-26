@@ -125,6 +125,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private void createUser(String email, String password, String username) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+        auth.getCurrentUser().updateProfile(profileChangeRequest);
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -135,8 +137,6 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
-                                UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-                                auth.getCurrentUser().updateProfile(profileChangeRequest);
                                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

@@ -76,7 +76,7 @@ public class EditProfile extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editName.getText().toString().length() == 0 || editEmail.getText().toString().length() == 0) {
+                if (editName.getText().toString().length() == 0) {
                     Toast.makeText(EditProfile.this, "A Field is empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
