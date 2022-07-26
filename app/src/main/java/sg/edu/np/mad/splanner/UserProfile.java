@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 
 public class UserProfile extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class UserProfile extends AppCompatActivity {
     private TextView profName;
     ImageView ProfPic;
     FirebaseAuth firebaseAuth;
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +47,20 @@ public class UserProfile extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         profName = findViewById(R.id.profName);
         profName.setText(user.getDisplayName());
         profEmail = findViewById(R.id.profEmail);
         profEmail.setText(user.getEmail());
+
+        StorageReference profileRef = storageReference.child("users/"+user.getUid()+"profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(ProfPic);
+            }
+        });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override

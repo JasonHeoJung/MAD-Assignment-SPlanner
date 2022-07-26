@@ -40,6 +40,8 @@ public class EditProfile extends AppCompatActivity {
     EditText editName, editEmail;
     ImageView profileImage;
     StorageReference storageReference;
+    FirebaseAuth fAuth;
+    FirebaseUser user;
 
 
     @Override
@@ -52,9 +54,16 @@ public class EditProfile extends AppCompatActivity {
 
         profileImage = findViewById(R.id.ProfPic);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = fAuth.getCurrentUser();
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("users/"+user.getUid()+"profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(profileImage);
+            }
+        });
 
         saveButton = findViewById(R.id.saveProf);
         editName = findViewById(R.id.etName);
@@ -97,7 +106,7 @@ public class EditProfile extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK){
                         Intent data = result.getData();
                         Uri imageUri = data.getData();
-                        profileImage.setImageURI(imageUri);
+                        //profileImage.setImageURI(imageUri);
                         uploadImage(imageUri);
                     }
                 }
@@ -119,13 +128,14 @@ public class EditProfile extends AppCompatActivity {
     private void uploadImage(Uri imageUri){
         Toast.makeText(this, "uploading...", Toast.LENGTH_SHORT).show();
         //Upload Image to Firebase Storage
-        StorageReference fileRef = storageReference.child("profile.jpg");
+        StorageReference fileRef = storageReference.child("users/"+user.getUid()+"profile.jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(profileImage);
                     }
                 });
             }
