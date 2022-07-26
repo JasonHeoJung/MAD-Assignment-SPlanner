@@ -15,4 +15,5 @@
     <string name="title_examtracker">Exam Tracker</string>
     <string name="title_profile">Profile</string>
     <string name="title_home">Home</string>
+    <string name="welcome_msg">Welcome Back,</string>
 </resources>

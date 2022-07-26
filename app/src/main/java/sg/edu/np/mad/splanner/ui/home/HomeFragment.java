@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeBinding;
@@ -19,6 +22,7 @@ import sg.edu.np.mad.splanner.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
     private int pagerValue = 0;
     GestureDetector gesture;
 
@@ -26,6 +30,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        TextView home_username = root.findViewById(R.id.home_username);
+        home_username.setText(auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName() : "username not found");
 
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.HomeFrame, new HomeTaskFragment()).commit();
