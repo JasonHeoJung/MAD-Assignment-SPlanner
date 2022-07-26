@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 public class UserProfile extends AppCompatActivity {
@@ -25,6 +29,7 @@ public class UserProfile extends AppCompatActivity {
     private Button resetButton;
     private TextView profEmail;
     private TextView profName;
+    ImageView ProfPic;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -35,8 +40,10 @@ public class UserProfile extends AppCompatActivity {
         logoutButton = findViewById(R.id.logoutButton);
         editButton = findViewById(R.id.Edit);
         resetButton = findViewById(R.id.resetPass);
-        firebaseAuth = FirebaseAuth.getInstance();
 
+        ProfPic = findViewById(R.id.imageView2);
+
+        firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
 
         profName = findViewById(R.id.profName);
