@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner;
+package sg.edu.np.mad.splanner.ui.timer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,8 +22,15 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
+import sg.edu.np.mad.splanner.AddRecordActivity;
+import sg.edu.np.mad.splanner.R;
+import sg.edu.np.mad.splanner.RecordDetailsActivity;
+import sg.edu.np.mad.splanner.databinding.FragmentTimerBinding;
 
 public class TimerFragment extends Fragment {
+
+    private FragmentTimerBinding binding;
+
     private EditText mEditTextInput;
     private TextView mTextViewCountDown;
     private Button mButtonSet;
@@ -41,19 +48,19 @@ public class TimerFragment extends Fragment {
     private long mStartTimeInMillis;
     private long mTimerLeftInMillis;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_timer, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentTimerBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        mEditTextInput = view.findViewById(R.id.edit_text_input);
-        mTextViewCountDown = view.findViewById(R.id.text_view_countdown);
+        mEditTextInput = root.findViewById(R.id.edit_text_input);
+        mTextViewCountDown = root.findViewById(R.id.text_view_countdown);
 
-        mButtonSet = view.findViewById(R.id.button_set);
-        mButtonStartPause = view.findViewById(R.id.button_start_pause);
-        mFinish = view.findViewById(R.id.finishBtn);
-        mButtonReset = view.findViewById(R.id.button_reset);
-        mRecord = view.findViewById(R.id.button_recordList);
-        mTimesUp = view.findViewById(R.id.times_up_text);
+        mButtonSet = root.findViewById(R.id.button_set);
+        mButtonStartPause = root.findViewById(R.id.button_start_pause);
+        mFinish = root.findViewById(R.id.finishBtn);
+        mButtonReset = root.findViewById(R.id.button_reset);
+        mRecord = root.findViewById(R.id.button_recordList);
+        mTimesUp = root.findViewById(R.id.times_up_text);
 
 
         mButtonSet.setOnClickListener(new View.OnClickListener() {
@@ -144,8 +151,16 @@ public class TimerFragment extends Fragment {
             }
         });
         updateCountDownText();
-        return view;
+        return root;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+
 
     private void setTime(long milliseconds){
         mStartTimeInMillis = milliseconds;
