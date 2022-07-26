@@ -14,10 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeBinding;
+import sg.edu.np.mad.splanner.ui.home.task.HomeAddTaskFragment;
+import sg.edu.np.mad.splanner.ui.home.task.HomeTaskFragment;
 
 public class HomeFragment extends Fragment {
 
@@ -44,6 +47,16 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return gesture.onTouchEvent(event);
+            }
+        });
+
+        FloatingActionButton fab = root.findViewById(R.id.homefab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment_activity_main, new HomeAddTaskFragment());
+                transaction.commit();
             }
         });
 
