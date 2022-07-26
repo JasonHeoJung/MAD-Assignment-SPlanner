@@ -3,11 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/activity_start.xml" value="0.1762917933130699" />
+        <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_add_task.xml" value="0.1762917933130699" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_examtracker.xml" value="0.23958333333333334" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_home.xml" value="0.27445652173913043" />
+        <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_home_add_task.xml" value="0.25" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_home_schedule.xml" value="0.1762917933130699" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_home_task.xml" value="0.3088768115942029" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_profile.xml" value="0.23958333333333334" />
+        <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/layout/fragment_timer.xml" value="0.1762917933130699" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2135" />
         <entry key="..\:/Android Studio/MAD-Assignment-SPlanner/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2135" />
         <entry key="..\:/Projects/MAD-Assignment-SPlanner/app/src/main/res/drawable/custom_input.xml" value="0.2265" />
