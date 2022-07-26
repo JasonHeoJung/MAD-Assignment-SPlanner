@@ -65,16 +65,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/ProfPic"
-        android:layout_width="127dp"
-        android:layout_height="127dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_avatar" />
-
     <Button
         android:id="@+id/saveProf"
         android:layout_width="135dp"
@@ -85,4 +75,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/ProfPic"
+        android:layout_width="127dp"
+        android:layout_height="127dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/user_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
