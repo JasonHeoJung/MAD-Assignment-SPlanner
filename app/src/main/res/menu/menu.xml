@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
-        android:title="Home"
+        android:id="@+id/navigation_home"
+        android:enabled="true"
+        android:title="@string/title_home"
         android:icon="@drawable/ic_home"/>
     <item
-        android:id="@+id/schedule"
-        android:title="Schedule"
-        android:icon="@drawable/ic_schedule"/>
-    <item
-        android:id="@+id/list"
-        android:title="To-do List"
-        android:icon="@drawable/ic_list"/>
-    <item
-        android:id="@+id/timer"
-        android:title="Timer"
+        android:id="@+id/navigation_timer"
+        android:enabled="true"
+        android:title="@string/title_timer"
         android:icon="@drawable/ic_timer"/>
     <item
-        android:id="@+id/tracker"
-        android:title="Exam tracker"
+        android:id="@+id/navigation_examtracker"
+        android:enabled="true"
+        android:title="@string/title_examtracker"
         android:icon="@drawable/ic_announcement"/>
+    <item
+        android:id="@+id/navigation_profile"
+        android:enabled="true"
+        android:title="@string/title_profile"
+        android:icon="@drawable/ic_baseline_person_24"/>
 </menu>
