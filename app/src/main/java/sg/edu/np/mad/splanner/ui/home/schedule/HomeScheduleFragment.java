@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner.ui.home;
+package sg.edu.np.mad.splanner.ui.home.schedule;
 
 import android.os.Bundle;
 
