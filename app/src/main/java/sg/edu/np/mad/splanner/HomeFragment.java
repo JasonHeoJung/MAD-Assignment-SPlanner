@@ -59,8 +59,6 @@ public class HomeFragment extends Fragment {
         int day = calender.get(Calendar.DAY_OF_WEEK);
         RecyclerView recyclerView = view.findViewById(R.id.listImage);
 
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(divider);
 
         if (day == Calendar.MONDAY){
             dayOfWeek = "Monday";
