@@ -7,6 +7,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -61,7 +63,6 @@ public class ScheduleFragment extends Fragment {
     private String nowday = "Monday";
     private ActivityMainBinding binding;
     private int notificationid = 1;
-
 
 
     @Override
@@ -248,5 +249,10 @@ public class ScheduleFragment extends Fragment {
             ScheduleAdapter adapter = new ScheduleAdapter(schedule, getActivity());
             adapter.notifyDataSetChanged();
         }
+
+
+
     };
+
+
 }

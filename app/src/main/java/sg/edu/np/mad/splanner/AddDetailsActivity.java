@@ -45,8 +45,8 @@ public class AddDetailsActivity extends AppCompatActivity {
         EditText etModule = findViewById(R.id.editmodname);
         EditText etClass = findViewById(R.id.editclassname);
         EditText etTime = findViewById(R.id.edittime);
-        etTime.setInputType(InputType.TYPE_NULL);
-        etTime.setOnClickListener(new View.OnClickListener() {
+        Button et = findViewById(R.id.timebtn);
+        et.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

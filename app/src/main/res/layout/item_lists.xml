@@ -12,7 +12,8 @@
         android:layout_height="89dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#a979ff"
+        android:background="@drawable/layout"
+        android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +21,7 @@
 
         <TextView
             android:id="@+id/moduletext"
-            android:layout_width="wrap_content"
+            android:layout_width="93dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -28,22 +29,22 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="16dp"
             android:text="Module"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="24sp"
 
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/classname"
-            android:layout_width="wrap_content"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="30dp"
             android:layout_marginTop="50dp"
-            android:textColor="@color/white"
             android:text="Class"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
         <TextView
@@ -51,10 +52,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="250dp"
-            android:textColor="@color/white"
             android:layout_marginTop="20dp"
             android:text="time"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="40sp"
 
             />
