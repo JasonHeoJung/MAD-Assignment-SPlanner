@@ -22,6 +22,7 @@
             android:text="Today's Schedule"
             android:textColor="#000000"
             android:textSize="30dp"
+            android:fontFamily="@font/simonetta_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +30,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listImage"
-            android:layout_width="413dp"
-            android:layout_height="563dp"
+            android:layout_width="401dp"
+            android:layout_height="514dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="30dp"
+            android:fontFamily="@font/simonetta_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />

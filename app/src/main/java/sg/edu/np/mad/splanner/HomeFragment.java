@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 
 public class HomeFragment extends Fragment {
@@ -39,6 +44,7 @@ public class HomeFragment extends Fragment {
     private Intent retrieveIntent;
     private String dayOfWeek;
     private TextView noSchedule;
+    private TextView underline;
     /*private TextView weekEndText;*/
 
     @Override
@@ -51,10 +57,15 @@ public class HomeFragment extends Fragment {
         retrieveIntent = getActivity().getIntent();
         schedule = new ArrayList<>();
         noSchedule = view.findViewById(R.id.noSchedule);
+        underline = view.findViewById(R.id.textView5);
         /*weekEndText = view.findViewById(R.id.weekEndText);*/
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
+        SpannableString content = new SpannableString("Today's Schedule");
+        content.setSpan(new UnderlineSpan(), 0 , content.length(), 0);
+        underline.setText(content);
+
         RecyclerView recyclerView = view.findViewById(R.id.listImage);
 
         RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
@@ -103,6 +114,7 @@ public class HomeFragment extends Fragment {
                         for (DataSnapshot eventSnapshot: snapshot.getChildren()) {
                             schedule.add(eventSnapshot.getValue(Event.class));
                         }
+                        Collections.sort(schedule);
                         setAdapter();
                         /*weekEndText.setText((schedule.isEmpty() ? "There are no schedule today, go make some!" : ""));*/
                     }

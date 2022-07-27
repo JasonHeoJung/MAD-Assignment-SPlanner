@@ -206,9 +206,9 @@ public class TimerFragment extends Fragment {
         if (mTimerRunning) {
             mEditTextInput.setEnabled(false);
             mButtonSet.setEnabled(false);
-            mButtonSet.setBackgroundColor(Color.GRAY);
+            mButtonSet.setBackgroundColor(Color.parseColor("#808080"));
             mButtonReset.setEnabled(false);
-            mButtonReset.setBackgroundColor(Color.GRAY);
+            mButtonReset.setBackgroundColor(Color.parseColor("#808080"));
             mTimesUp.setVisibility(View.INVISIBLE);
             mFinish.setVisibility(View.INVISIBLE);
             mButtonStartPause.setText("Pause");
@@ -223,7 +223,7 @@ public class TimerFragment extends Fragment {
 
             if (mTimerLeftInMillis < 1000) {
                 mButtonStartPause.setEnabled(false);
-                mButtonStartPause.setBackgroundColor(Color.GRAY);
+                mButtonStartPause.setBackgroundColor(Color.parseColor("#808080"));
                 mFinish.setVisibility(View.VISIBLE);
                 mTimesUp.setVisibility(View.VISIBLE);
             }
@@ -238,7 +238,7 @@ public class TimerFragment extends Fragment {
             }
             else {
                 mButtonReset.setEnabled(false);
-                mButtonReset.setBackgroundColor(Color.GRAY);
+                mButtonReset.setBackgroundColor(Color.parseColor("#808080"));
             }
         }
     }
