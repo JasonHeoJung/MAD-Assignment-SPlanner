@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeBinding;
+import sg.edu.np.mad.splanner.ui.home.schedule.HomeAddScheduleFragment;
+import sg.edu.np.mad.splanner.ui.home.schedule.HomeScheduleFragment;
 import sg.edu.np.mad.splanner.ui.home.task.HomeAddTaskFragment;
 import sg.edu.np.mad.splanner.ui.home.task.HomeTaskFragment;
 
@@ -40,7 +42,7 @@ public class HomeFragment extends Fragment {
         home_username.setText(auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName() : "username not found");
 
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.HomeFrame, new HomeTaskFragment()).commit();
+        fragmentTransaction.replace(R.id.HomeFrame, pagerValue == 0 ? new HomeTaskFragment() : new HomeScheduleFragment()).commit();
 
         setGesture();
         root.setOnTouchListener(new View.OnTouchListener() {
@@ -55,7 +57,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, new HomeAddTaskFragment());
+                Fragment target = pagerValue == 0 ? new HomeAddTaskFragment() : new HomeAddScheduleFragment();
+                transaction.replace(R.id.nav_host_fragment_activity_main, target);
                 transaction.commit();
             }
         });
