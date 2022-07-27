@@ -74,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <Button
-            android:id="@+id/cancelAddTask"
+            android:id="@+id/add_task_cancel"
             android:layout_width="320dp"
             android:layout_height="60dp"
             android:layout_marginStart="45dp"

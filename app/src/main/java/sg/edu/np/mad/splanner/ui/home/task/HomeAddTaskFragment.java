@@ -23,7 +23,7 @@ public class HomeAddTaskFragment extends Fragment {
         binding = FragmentHomeAddTaskBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Button cancelBtn = root.findViewById(R.id.cancelAddTask);
+        Button cancelBtn = root.findViewById(R.id.add_task_cancel);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
