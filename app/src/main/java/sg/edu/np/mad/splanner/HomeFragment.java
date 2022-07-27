@@ -10,15 +10,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,25 +22,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 
 
 public class HomeFragment extends Fragment {
 
-    private ImageButton profile;
+    private ImageView profile;
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private ArrayList<Event> schedule;
-    private Intent retrieveIntent;
+    Intent retrieveIntent;
     private String dayOfWeek;
-    private TextView noSchedule;
-    private TextView underline;
+    TextView noSchedule;
+    StorageReference storageReference;
     /*private TextView weekEndText;*/
 
     @Override
@@ -56,20 +51,14 @@ public class HomeFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference("users");
         retrieveIntent = getActivity().getIntent();
         schedule = new ArrayList<>();
-        noSchedule = view.findViewById(R.id.noSchedule);
-        underline = view.findViewById(R.id.textView5);
+        noSchedule = view.findViewById(R.id.week);
+        storageReference = FirebaseStorage.getInstance().getReference();
         /*weekEndText = view.findViewById(R.id.weekEndText);*/
         profile = view.findViewById(R.id.profile);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
-        SpannableString content = new SpannableString("Today's Schedule");
-        content.setSpan(new UnderlineSpan(), 0 , content.length(), 0);
-        underline.setText(content);
-
         RecyclerView recyclerView = view.findViewById(R.id.listImage);
 
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(divider);
 
         if (day == Calendar.MONDAY){
             dayOfWeek = "Monday";
@@ -92,13 +81,12 @@ public class HomeFragment extends Fragment {
         }
         noSchedule.setText(dayOfWeek);
 
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UserProfile.class);
-                startActivity(intent);
-            }
+        profile.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), UserProfile.class);
+            startActivity(intent);
         });
+        StorageReference profileRef = storageReference.child("users/"+auth.getCurrentUser().getUid()+"profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
 
         return view;
     }
@@ -114,7 +102,6 @@ public class HomeFragment extends Fragment {
                         for (DataSnapshot eventSnapshot: snapshot.getChildren()) {
                             schedule.add(eventSnapshot.getValue(Event.class));
                         }
-                        Collections.sort(schedule);
                         setAdapter();
                         /*weekEndText.setText((schedule.isEmpty() ? "There are no schedule today, go make some!" : ""));*/
                     }
