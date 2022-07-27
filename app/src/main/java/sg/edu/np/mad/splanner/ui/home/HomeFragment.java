@@ -104,8 +104,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void swipeLeft() {
-        Log.v("SWIPE TEST", "Right to Left");
-
         if (pagerValue == 0) {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.HomeFrame, new HomeScheduleFragment()).commit();
@@ -114,8 +112,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void swipeRight() {
-        Log.v("SWIPE TEST", "Left to Right");
-
         if (pagerValue == 1) {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.HomeFrame, new HomeTaskFragment()).commit();
