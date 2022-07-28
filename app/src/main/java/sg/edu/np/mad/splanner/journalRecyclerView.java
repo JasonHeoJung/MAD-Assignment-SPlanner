@@ -84,26 +84,7 @@ public class journalRecyclerView extends AppCompatActivity {
     });
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.journalmenu,menu);
-        MenuItem menuItem = menu.findItem(R.id.journal_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Search Journal Title");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                journal_adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public void onStart(){
@@ -128,13 +109,7 @@ public class journalRecyclerView extends AppCompatActivity {
 
             }
         });
-        ImageButton cancel = findViewById(R.id.backbtn);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
     }
     private void setAdapter(){

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class journal_Adapter extends RecyclerView.Adapter<journalRecyclerviewholder>  implements Filterable {
+public class journal_Adapter extends RecyclerView.Adapter<journalRecyclerviewholder>{
     private final ArrayList<journal> journallist;
     private final ArrayList<journal> journallistfull;
     private final ArrayList<String> journalid;
@@ -58,37 +58,7 @@ public class journal_Adapter extends RecyclerView.Adapter<journalRecyclerviewhol
         return journallist.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return null;
-    }
 
-    private final Filter newFIlter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<journal> filteredArrayList = new ArrayList<>();
-            if(constraint == null || constraint.length() == 0){
-                filteredArrayList.addAll(journallistfull);
-            }
-            else{
-                String filterpattern = constraint.toString().toLowerCase().trim();
-                for(journal j : journallistfull){
-                    filteredArrayList.add(j);
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredArrayList;
-            results.count = filteredArrayList.size();
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-            journallist.clear();
-            journallist.addAll((ArrayList)filterResults.values);
-            notifyDataSetChanged();
-        }
-    };
 
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);
