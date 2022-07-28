@@ -111,7 +111,7 @@
                     android:layout_height="12dp"
                     android:layout_marginStart="5dp"
                     android:src="@drawable/ic_baseline_circle_24"
-                    android:tint="#000000"
+                    app:tint="#000000"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
