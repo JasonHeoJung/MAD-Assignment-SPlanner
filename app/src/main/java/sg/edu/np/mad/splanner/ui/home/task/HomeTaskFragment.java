@@ -23,11 +23,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.Task;
-import sg.edu.np.mad.splanner.ToDoListAdapter;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeTaskBinding;
 
 public class HomeTaskFragment extends Fragment {
@@ -79,6 +83,17 @@ public class HomeTaskFragment extends Fragment {
                     }
                 }
                 if (snapshot.hasChildren()) {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+                    Collections.sort(tasks, (t1, t2) -> {
+                        try {
+                            return format.parse(t1.getDueDate()).compareTo(format.parse(t2.getDueDate()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        return 0;
+                    });
+
                     recyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
                     setAdapter();
@@ -89,8 +104,7 @@ public class HomeTaskFragment extends Fragment {
                 }
 
                 task_count.setText(Integer.toString(taskIds.size()));
-                task_progress_bar.setProgress((completedTask * 100)/taskIds.size());
-                Log.v("CHECK PROGRESS VALUE", Integer.toString((completedTask * 100)/taskIds.size()));
+                task_progress_bar.setProgress(taskIds.size() == 0 ? 100 : (completedTask * 100)/taskIds.size());
                 task_progress_text.setText(String.format("%d out of %d tasks done", completedTask, taskIds.size()));
             }
 
