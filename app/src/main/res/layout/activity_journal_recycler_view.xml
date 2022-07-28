@@ -6,16 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".journalRecyclerView">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/journalList"
-        android:layout_width="411dp"
-        android:layout_height="677dp"
+        android:layout_width="410dp"
+        android:layout_height="733dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="344dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/ic_baseline_keyboard_arrow_left_24"
+        android:textSize="24sp"
+        android:backgroundTint="#673AB7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/addjournal"
@@ -27,4 +40,5 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

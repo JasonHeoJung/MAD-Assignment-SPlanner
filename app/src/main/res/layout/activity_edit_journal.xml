@@ -29,14 +29,20 @@
         android:layout_width="366dp"
         android:layout_height="63dp"
         android:layout_marginStart="21dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="11dp"
         android:padding="16dp"
+        android:focusable="false"
+        android:textIsSelectable="false"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTitle" />
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -56,7 +62,7 @@
             <EditText
                 android:id="@+id/editdes"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="TextView" />
         </LinearLayout>
 
@@ -76,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
     <Button
-        android:id="@+id/cancelbtn"
+        android:id="@+id/cancel2btn"
         android:layout_width="339dp"
         android:layout_height="72dp"
         android:layout_marginStart="10dp"
@@ -89,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addBtn"
+        app:layout_constraintTop_toBottomOf="@+id/SaveBtn"
         app:layout_constraintVertical_bias="0.142" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

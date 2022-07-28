@@ -3,6 +3,7 @@ package sg.edu.np.mad.splanner;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -13,8 +14,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,16 +32,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 public class journalRecyclerView extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private RecyclerView recyclerView;
+    journal_Adapter journal_adapter;
     private TextView textweek;
     private ArrayList<String> journalid;
     private ArrayList<journal> journallist;
-    private journal_Adapter.RecyclerViewClickListener listener;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class journalRecyclerView extends AppCompatActivity {
 
         Button addjournal = findViewById(R.id.addjournal);
 
+
         addjournal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +63,48 @@ public class journalRecyclerView extends AppCompatActivity {
         });
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
+        reference.child(auth.getCurrentUser().getUid()).child("journal").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                journallist = new ArrayList<>();
+                journalid = new ArrayList<>();
+                for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
+                    journalid.add(eventSnapshot.getKey());
+                    journallist.add(eventSnapshot.getValue(journal.class));
+                }
+
+                setAdapter();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+    });
+
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.journalmenu,menu);
+        MenuItem menuItem = menu.findItem(R.id.journal_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search Journal Title");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                journal_adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public void onStart(){
         super.onStart();
@@ -80,28 +128,29 @@ public class journalRecyclerView extends AppCompatActivity {
 
             }
         });
+        ImageButton cancel = findViewById(R.id.backbtn);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
     private void setAdapter(){
-        //setOnclicklistner();
+
         Log.v("JOURNAL SIZE", String.valueOf(journallist.size()));
-        journal_Adapter adapter = new journal_Adapter(journallist, listener);
+        journal_Adapter adapter = new journal_Adapter(journallist, journalid, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
     }
 
-    private void setOnclicklistner() {
-        listener = new journal_Adapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Intent intent = new Intent(getApplicationContext(), journal_des.class);
-                intent.putExtra("Title", journallist.get(position).getTitle());
-                startActivity(intent);
-            }
-        };
-    }
+
+
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -114,14 +163,12 @@ public class journalRecyclerView extends AppCompatActivity {
             journallist.remove(viewHolder.getAdapterPosition());
             String id = journalid.get(viewHolder.getAdapterPosition());
             Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
-            reference.child(auth.getCurrentUser().getUid()).child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
-                    reference.child(auth.getCurrentUser().getUid()).child(id).removeValue();
-                }
 
-                journal_Adapter adapter = new journal_Adapter(journallist, listener);
-            });
+            reference.child(auth.getCurrentUser().getUid()).child("journal").child(id).removeValue();
+
+            journal_Adapter adapter = new journal_Adapter(journallist, journalid, journalRecyclerView.this);
+            adapter.notifyDataSetChanged();
         }
     };
+
 }
