@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.Task;
@@ -82,8 +83,23 @@ public class HomeTaskFragment extends Fragment {
                         completedTask++;
                     }
                 }
+
+                Map<String,Task> taskMap = new TreeMap<String,Task>();
+                for (int i = 0; i < taskIds.size(); i++) {
+                    taskMap.put(taskIds.get(i),tasks.get(i));
+                }
+
                 if (snapshot.hasChildren()) {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+                    Collections.sort(taskIds, (t1, t2) -> {
+                        try {
+                            return format.parse(taskMap.get(t1).getDueDate()).compareTo(format.parse(taskMap.get(t2).getDueDate()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        return 0;
+                    });
 
                     Collections.sort(tasks, (t1, t2) -> {
                         try {
