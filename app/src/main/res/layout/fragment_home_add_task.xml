@@ -1,90 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusable="false"
     tools:context=".ui.home.task.HomeAddTaskFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="214dp"
-            android:text="Task:"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toStartOf="@+id/taskName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="106dp"
+            android:layout_marginEnd="40dp"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:hintTextColor="#6200EE"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/taskName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="214dp"
-            android:layout_marginEnd="89dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/etTaskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="26dp"
-            android:text="Due Date:"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toStartOf="@+id/dueDate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskName" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:focusable="false"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxStrokeColor="#673AB7"
+            app:hintTextColor="#6200EE"
+            app:layout_constraintEnd_toEndOf="@+id/add_task_btn"
+            app:layout_constraintStart_toStartOf="@+id/add_task_btn"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-        <EditText
-            android:id="@+id/dueDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="23dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/taskName" />
+            <EditText
+                android:id="@+id/etTaskDue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Due"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/addTask"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="46dp"
-            android:backgroundTint="#54C8AD"
-            android:text="add task"
+            android:id="@+id/add_task_btn"
+            android:layout_width="0dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FFFFFF"
+            android:enabled="false"
+            android:text="Add Task"
+            android:textAllCaps="false"
+            android:textColor="#949494"
+            app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+            app:strokeColor="#949494"
+            app:strokeWidth="0dp" />
 
-        <Button
-            android:id="@+id/add_task_cancel"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="46dp"
-            android:backgroundTint="#E86579"
-            android:text="Cancel"
+        <ImageView
+            android:id="@+id/closeImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addTask" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_close_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

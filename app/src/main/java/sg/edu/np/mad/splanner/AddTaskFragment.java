@@ -47,7 +47,7 @@ public class AddTaskFragment extends Fragment {
                 String dueDate = date.getText().toString();
 
                 DatabaseReference tasksRef = reference.child(auth.getCurrentUser().getUid()).child("tasks").push();
-                tasksRef.setValue(new Task(name, dueDate));
+                tasksRef.setValue(new Task(name, dueDate, false));
 
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
             }
