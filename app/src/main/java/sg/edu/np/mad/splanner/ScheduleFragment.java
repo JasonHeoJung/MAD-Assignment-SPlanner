@@ -85,8 +85,6 @@ public class ScheduleFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView);
 
-        RecyclerView.ItemDecoration divider = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(divider);
         textweek = view.findViewById(R.id.week);
 
         Button mon = view.findViewById(R.id.monday);
