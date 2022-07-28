@@ -17,9 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,20 +44,20 @@ public class HomeAddTaskFragment extends Fragment {
         binding = FragmentHomeAddTaskBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        auth = FirebaseAuth.getInstance();
+        reference = FirebaseDatabase.getInstance().getReference("users");
+
         MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select date")
                 .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build();
 
-        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
-            @Override
-            public void onPositiveButtonClick(Long selection) {
-                Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                calendar.setTimeInMillis(selection);
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                String formattedDate  = format.format(calendar.getTime());
-                task_due.setText(formattedDate);
-            }
+        datePicker.addOnPositiveButtonClickListener(selection -> {
+            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+            calendar.setTimeInMillis(selection);
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate  = format.format(calendar.getTime());
+            task_due.setText(formattedDate);
         });
 
         task_title = root.findViewById(R.id.etTaskTitle);
@@ -74,29 +74,23 @@ public class HomeAddTaskFragment extends Fragment {
         });
 
         Button addTask = root.findViewById(R.id.add_task_btn);
-        addTask.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = task_title.getText().toString();
-                String dueDate = task_due.getText().toString();
+        addTask.setOnClickListener(view -> {
+            String name = task_title.getText().toString();
+            String dueDate = task_due.getText().toString();
 
-                DatabaseReference tasksRef = reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").push();
-                tasksRef.setValue(new Task(name, dueDate, false));
+            DatabaseReference tasksRef = reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").push();
+            tasksRef.setValue(new Task(name, dueDate, false));
 
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
-                transaction.commit();
-            }
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
+            transaction.commit();
         });
 
         ImageView cancel = root.findViewById(R.id.closeImg);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
-                transaction.commit();
-            }
+        cancel.setOnClickListener(v -> {
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
+            transaction.commit();
         });
 
         return root;
