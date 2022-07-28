@@ -1,32 +1,32 @@
 package sg.edu.np.mad.splanner;
 
 public class journal{
-    public String Title;
-    public String Description;
+    public String title;
+    public String description;
     public String date;
 
     public journal() {
     }
 
     public journal(String title, String des, String date) {
-        this.Title = title;
-        this.Description = des;
+        this.title = title;
+        this.description = des;
         this.date = date;
     }
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getDate() {

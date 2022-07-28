@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".journal_des">
+    tools:context=".Edit_Journal">
 
-    <TextView
-        android:id="@+id/journal_title_2"
+    <EditText
+        android:id="@+id/editTitle"
         android:layout_width="364dp"
         android:layout_height="63dp"
         android:layout_marginStart="19dp"
@@ -26,10 +26,9 @@
 
     <TextView
         android:id="@+id/editviewdate"
-        android:layout_width="362dp"
-        android:layout_height="67dp"
+        android:layout_width="366dp"
+        android:layout_height="63dp"
         android:layout_marginStart="21dp"
-        android:layout_marginEnd="28dp"
         android:layout_marginBottom="11dp"
         android:padding="16dp"
         android:text="TextView"
@@ -37,13 +36,12 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="363dp"
-        android:layout_height="374dp"
+        android:layout_width="362dp"
+        android:layout_height="348dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="25dp"
@@ -55,25 +53,43 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
-            <TextView
+            <EditText
                 android:id="@+id/editdes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="TextView" />
         </LinearLayout>
 
     </ScrollView>
 
     <Button
-        android:id="@+id/Edtibtn"
-        android:layout_width="361dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginEnd="28dp"
-        android:text="Edit"
+        android:id="@+id/SaveBtn"
+        android:layout_width="339dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="#42AF80"
+        android:text="save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <Button
+        android:id="@+id/cancelbtn"
+        android:layout_width="339dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#C34F4F"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addBtn"
+        app:layout_constraintVertical_bias="0.142" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

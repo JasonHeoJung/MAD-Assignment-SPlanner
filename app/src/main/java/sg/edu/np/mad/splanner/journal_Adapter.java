@@ -31,8 +31,6 @@ public class journal_Adapter extends RecyclerView.Adapter<journalRecyclerviewhol
     @Override
     public void onBindViewHolder(@NonNull final journalRecyclerviewholder holder, final int position) {
         holder.title.setText(journallist.get(position).getTitle());
-
-
     }
 
     @Override

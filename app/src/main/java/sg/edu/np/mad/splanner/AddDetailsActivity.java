@@ -77,7 +77,7 @@ public class AddDetailsActivity extends AppCompatActivity {
 
 
 
-        Button addEventBtn = findViewById(R.id.Save);
+        Button addEventBtn = findViewById(R.id.addBtn);
         addEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

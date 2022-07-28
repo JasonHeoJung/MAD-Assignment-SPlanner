@@ -89,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editclassname" />
 
     <Button
-        android:id="@+id/Save"
+        android:id="@+id/addBtn"
         android:layout_width="339dp"
         android:layout_height="72dp"
         android:layout_marginStart="10dp"
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Save"
+        app:layout_constraintTop_toBottomOf="@+id/addBtn"
         app:layout_constraintVertical_bias="0.142" />
 
     <Button

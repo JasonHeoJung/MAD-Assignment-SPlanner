@@ -3,6 +3,7 @@ package sg.edu.np.mad.splanner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class journal_des extends AppCompatActivity {
@@ -14,5 +15,8 @@ public class journal_des extends AppCompatActivity {
         TextView title = findViewById(R.id.journal_title_2);
         TextView Description = findViewById(R.id.editdes);
         TextView date = findViewById(R.id.editviewdate);
+
+
+        Button editbtn = findViewById(R.id.Edtibtn);
     }
 }
