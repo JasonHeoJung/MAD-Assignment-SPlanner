@@ -53,6 +53,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
 
         holder.task_title.setText(name);
         holder.task_due.setText(dd);
+        holder.task_status.setChecked(tasks.get(position).getStatus());
+        holder.task_view.setOnClickListener(v -> {
+            holder.task_status.toggle();
+            reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").child(taskIds.get(position)).child("status").setValue(holder.task_status.isChecked());
+        });
     }
 
     @Override
