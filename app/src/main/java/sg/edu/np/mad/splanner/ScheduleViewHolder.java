@@ -13,7 +13,7 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder {
     public ScheduleViewHolder(final View view) {
         super(view);
         classtxt = view.findViewById(R.id.classname);
-        modtxt = view.findViewById(R.id.moduletext);
+        modtxt = view.findViewById(R.id.journal_title);
         timetxt = view.findViewById(R.id.timetext);
     }
 }

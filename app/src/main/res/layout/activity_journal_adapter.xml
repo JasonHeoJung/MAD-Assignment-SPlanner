@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerviewadapter"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".journal_Adapter">
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -16,49 +16,40 @@
         android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.012">
 
         <TextView
             android:id="@+id/journal_title"
-            android:layout_width="93dp"
+            android:layout_width="249dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="17dp"
             android:layout_marginBottom="16dp"
-            android:text="Module"
+            android:padding="12dp"
+            android:text="Title"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="24sp"
 
             app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/classname"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="50dp"
-            android:text="Class"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/timetext"
+        <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="20dp"
-            android:text="time"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="40sp"
+            android:layout_height="59dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="306dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
 
-            />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
