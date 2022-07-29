@@ -16,18 +16,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="1dp"
-            android:text="Countdown Timer"
+            android:layout_marginTop="76dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/simonetta_black"
+            android:text="Countdown Timer"
             android:textColor="#000000"
             android:textSize="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/edit_text_input"
+            app:layout_constraintBottom_toTopOf="@+id/button_set"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
 
         <TextView
             android:id="@+id/text_view_countdown"
@@ -35,15 +33,17 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:background="@drawable/circle"
+            android:gravity="center"
             android:text="00:00"
             android:textColor="@android:color/white"
             android:textSize="60sp"
-            android:gravity="center"
-            android:background="@drawable/circle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.461" />
 
         <Button
             android:id="@+id/button_start_pause"
@@ -85,15 +85,15 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/edit_text_input"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="40dp"
             android:layout_marginEnd="48dp"
+            android:layout_marginBottom="17dp"
             android:layout_toEndOf="@+id/edit_text_input"
             android:backgroundTint="#9365E8"
             android:text="SET"
+            app:layout_constraintBottom_toTopOf="@+id/text_view_countdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/edit_text_input"
-            app:layout_constraintTop_toBottomOf="@+id/title_timer" />
+            app:layout_constraintStart_toEndOf="@+id/edit_text_input" />
 
         <EditText
             android:id="@+id/edit_text_input"
@@ -101,7 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/text_view_countdown"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
             android:layout_marginBottom="17dp"
             android:hint="Minutes"
             android:inputType="number"
@@ -109,9 +108,7 @@
             app:layout_constraintBottom_toTopOf="@+id/text_view_countdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.34"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_timer"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/times_up_text"
@@ -128,19 +125,6 @@
             app:layout_constraintTop_toBottomOf="@+id/button_start_pause"
             tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/button_recordList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="301dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#9365E8"
-            android:text="Records"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/times_up_text" />
 
         <Button
             android:id="@+id/finishBtn"
@@ -155,5 +139,6 @@
             app:layout_constraintTop_toBottomOf="@+id/times_up_text"
             tools:visibility="visible" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+</ScrollView>

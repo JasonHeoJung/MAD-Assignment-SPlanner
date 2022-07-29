@@ -1,15 +1,19 @@
 package sg.edu.np.mad.splanner;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RecordDetailsActivity extends AppCompatActivity {
+public class RecordFragment extends Fragment {
     private Button Back;
 
     private FirebaseAuth auth;
@@ -30,22 +34,16 @@ public class RecordDetailsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_details);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_record, container, false);
 
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
         record = new ArrayList<>();
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
 
-        Back = findViewById(R.id.back);
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        return view;
     }
 
     @Override
@@ -72,11 +70,10 @@ public class RecordDetailsActivity extends AppCompatActivity {
 
     private void setAdapter() {
         RecordAdapter adapter = new RecordAdapter(recordIds, record);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(RecordDetailsActivity.this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
     }
-
 }

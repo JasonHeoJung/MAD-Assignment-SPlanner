@@ -29,7 +29,7 @@ public class TimerFragment extends Fragment {
     private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
-    private Button mRecord;
+    /*private Button mRecord;*/
     private Button mFinish;
     private TextView mTimesUp;
     private String inputTime;
@@ -52,7 +52,7 @@ public class TimerFragment extends Fragment {
         mButtonStartPause = view.findViewById(R.id.button_start_pause);
         mFinish = view.findViewById(R.id.finishBtn);
         mButtonReset = view.findViewById(R.id.button_reset);
-        mRecord = view.findViewById(R.id.button_recordList);
+        /*mRecord = view.findViewById(R.id.button_recordList);*/
         mTimesUp = view.findViewById(R.id.times_up_text);
 
 
@@ -108,13 +108,6 @@ public class TimerFragment extends Fragment {
             }
         });
 
-        mRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RecordDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
         mFinish.setOnClickListener(new View.OnClickListener() {
             @Override
