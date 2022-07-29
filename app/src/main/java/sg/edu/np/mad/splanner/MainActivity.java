@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case  R.id.timer:
-                            fragment = new TimerFragment();
+                            fragment = new MainTimerFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
