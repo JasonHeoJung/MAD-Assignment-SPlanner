@@ -1,7 +1,6 @@
 package sg.edu.np.mad.splanner.ui.home.task;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +8,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,8 +19,6 @@ import java.util.ArrayList;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.Task;
-import sg.edu.np.mad.splanner.ToDoListFragment;
-import sg.edu.np.mad.splanner.ToDoListViewHolder;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
     private FirebaseAuth auth;
@@ -59,6 +54,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskViewHolder> {
         holder.task_status.setChecked(tasks.get(position).getStatus());
         holder.task_view.setOnClickListener(v -> {
             holder.task_status.toggle();
+            reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").child(taskIds.get(position)).child("status").setValue(holder.task_status.isChecked());
+
+            ProgressBar task_progress_bar = fragmentActivity.findViewById(R.id.task_progress_bar);
+            TextView task_progress_text = fragmentActivity.findViewById(R.id.task_progress_text);
+
+            int change = holder.task_status.isChecked() ? 1 : -1;
+
+            task_progress_text.setText(String.format("%s out of %d tasks done", String.valueOf(Math.round(task_progress_bar.getProgress() / (double)100 * taskIds.size() + change)), taskIds.size()));
+            task_progress_bar.setProgress((int) Math.round((task_progress_bar.getProgress() / (double)100 * taskIds.size() + change) * 100 / taskIds.size()));
+        });
+        holder.task_status.setOnClickListener(v -> {
             reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").child(taskIds.get(position)).child("status").setValue(holder.task_status.isChecked());
 
             ProgressBar task_progress_bar = fragmentActivity.findViewById(R.id.task_progress_bar);

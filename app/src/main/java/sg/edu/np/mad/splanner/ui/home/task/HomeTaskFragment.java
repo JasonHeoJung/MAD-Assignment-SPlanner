@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +50,9 @@ public class HomeTaskFragment extends Fragment {
 
     private ArrayList<String> taskIds;
     private ArrayList<Task> tasks;
+    private Map<String,Task> taskMap;
+    private TaskAdapter adapter;
+    private int completedTask;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeTaskBinding.inflate(inflater, container, false);
@@ -69,12 +73,64 @@ public class HomeTaskFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        loadData();
+
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                loadData();
+                reference.child(auth.getCurrentUser().getUid()).child("tasks").child(taskIds.get(viewHolder.getAdapterPosition())).removeValue();
+
+                if (taskMap.get(taskIds.get(viewHolder.getAdapterPosition())).getStatus()) {
+                    completedTask -= 1;
+                }
+
+                taskMap.remove(taskIds.get(viewHolder.getAdapterPosition()));
+                taskIds.remove(viewHolder.getAdapterPosition());
+                tasks.remove(viewHolder.getAdapterPosition());
+                adapter.taskIds = taskIds;
+                adapter.tasks = tasks;
+
+                if (tasks.size() != 0) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+                else {
+                    recyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+
+                task_count.setText(String.valueOf(taskIds.size()));
+                task_progress_text.setText(String.format("%d out of %d tasks done", completedTask, taskIds.size()));
+                task_progress_bar.setProgress(taskIds.size() == 0 ? 100 : (completedTask * 100)/taskIds.size());
+
+                setAdapter();
+            }
+        });
+
+        helper.attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+    private void loadData() {
         reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 taskIds = new ArrayList<>();
                 tasks = new ArrayList<>();
-                int completedTask = 0;
+                taskMap = new TreeMap<String,Task>();
+
+                completedTask = 0;
 
                 for (DataSnapshot taskSnapshot: snapshot.getChildren()) {
                     taskIds.add(taskSnapshot.getKey());
@@ -84,7 +140,6 @@ public class HomeTaskFragment extends Fragment {
                     }
                 }
 
-                Map<String,Task> taskMap = new TreeMap<String,Task>();
                 for (int i = 0; i < taskIds.size(); i++) {
                     taskMap.put(taskIds.get(i),tasks.get(i));
                 }
@@ -102,6 +157,7 @@ public class HomeTaskFragment extends Fragment {
                     });
 
                     Collections.sort(tasks, (t1, t2) -> {
+                        if (t1.getDueDate().equals("") || t2.getDueDate().equals("")) return -1;
                         try {
                             return format.parse(t1.getDueDate()).compareTo(format.parse(t2.getDueDate()));
                         } catch (ParseException e) {
@@ -131,14 +187,8 @@ public class HomeTaskFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
     private void setAdapter() {
-        TaskAdapter adapter = new TaskAdapter(taskIds, tasks, getActivity());
+        adapter = new TaskAdapter(taskIds, tasks, getActivity());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(layoutManager);
