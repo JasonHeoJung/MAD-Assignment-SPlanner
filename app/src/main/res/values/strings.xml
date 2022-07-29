@@ -26,5 +26,6 @@
     <string name="title_profile">Profile</string>
     <string name="title_home">Home</string>
     <string name="welcome_msg">Welcome Back,</string>
-    <string name="no_data_available">No task available</string>
+    <string name="no_task_available">No task available</string>
+    <string name="no_schedule_available">No schedule available</string>
 </resources>
