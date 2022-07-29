@@ -33,6 +33,7 @@ import java.util.Calendar;
 public class HomeFragment extends Fragment {
 
     private ImageView profile;
+    private ImageView music;
     private FirebaseAuth auth;
     private DatabaseReference reference;
     private ArrayList<Event> schedule;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
         /*weekEndText = view.findViewById(R.id.weekEndText);*/
         profile = view.findViewById(R.id.profile);
+        music = view.findViewById(R.id.music);
         Calendar calender = Calendar.getInstance();
         int day = calender.get(Calendar.DAY_OF_WEEK);
         RecyclerView recyclerView = view.findViewById(R.id.listImage);
@@ -87,6 +89,14 @@ public class HomeFragment extends Fragment {
         });
         StorageReference profileRef = storageReference.child("users/"+auth.getCurrentUser().getUid()+"profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
+
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent musicPage = new Intent(getActivity().getApplicationContext(), MusicList.class);
+                startActivity(musicPage);
+            }
+        });
 
         return view;
     }
