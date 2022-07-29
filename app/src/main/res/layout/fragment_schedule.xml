@@ -76,6 +76,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
+
+
         </LinearLayout>
 
     </HorizontalScrollView>
@@ -105,6 +107,8 @@
         app:layout_constraintStart_toEndOf="@+id/recyclerView" />
 
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="407dp"
@@ -113,6 +117,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageButton
+        android:id="@+id/journalbtn"
+        android:layout_width="55dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="-80dp"
+        android:layout_marginBottom="-470dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_subject_24"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintStart_toEndOf="@+id/recyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

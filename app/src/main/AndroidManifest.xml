@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner" >
         <activity
+            android:name=".Edit_Journal"
+            android:exported="false"
+            android:label="@string/title_activity_edit_journal"
+            android:theme="@style/Theme.SPlanner.NoActionBar" />
+        <activity
             android:name=".RecordDetailsActivity"
             android:exported="false" />
         <activity
@@ -48,8 +53,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".journalRecyclerView" />
+        <activity android:name=".journal_des" />
+        <activity android:name=".AddJournal" />
 
-        <receiver android:name=".alarmreciever"/>
+        <receiver
+            android:name=".alarmreciever"
+            android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
