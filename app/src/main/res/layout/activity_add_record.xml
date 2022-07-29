@@ -130,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/timeTaken" />
 
     <Button
-        android:id="@+id/cancel"
+        android:id="@+id/cancelbtn"
         android:layout_width="339dp"
         android:layout_height="72dp"
         android:layout_marginStart="10dp"

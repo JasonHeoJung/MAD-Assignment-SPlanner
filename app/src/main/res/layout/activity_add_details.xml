@@ -35,18 +35,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:descendantFocusability="blocksDescendants"
         android:id="@+id/edittime"
-        android:layout_width="341dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="179dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="none"
         android:hint="Time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
+        android:inputType="none"
+        android:focusable="false"
+        android:textIsSelectable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -91,7 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editclassname" />
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/addBtn"
         android:layout_width="339dp"
         android:layout_height="72dp"
         android:layout_marginStart="10dp"
@@ -105,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/cancel"
+        android:id="@+id/cancelbtn"
         android:layout_width="339dp"
         android:layout_height="72dp"
         android:layout_marginStart="10dp"
@@ -118,7 +116,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add"
+        app:layout_constraintTop_toBottomOf="@+id/addBtn"
         app:layout_constraintVertical_bias="0.142" />
+
+    <Button
+        android:id="@+id/timebtn"
+        android:layout_width="130dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="46dp"
+        android:text="Select Time"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/edittime"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

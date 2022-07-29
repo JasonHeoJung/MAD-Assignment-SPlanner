@@ -1,36 +1,41 @@
 package sg.edu.np.mad.splanner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.Locale;
 
+import sg.edu.np.mad.splanner.databinding.ActivityMainBinding;
+
 public class AddDetailsActivity extends AppCompatActivity {
+
+
+
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+    private Calendar calendar;
     private FirebaseAuth auth;
     private DatabaseReference reference;
+    private ActivityMainBinding binding;
     int hour, min;
     int dayofweek;
     @Override
@@ -39,14 +44,17 @@ public class AddDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_details);
 
 
+        createNotificationChannel();
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
+
 
         EditText etModule = findViewById(R.id.editmodname);
         EditText etClass = findViewById(R.id.editclassname);
         EditText etTime = findViewById(R.id.edittime);
-        etTime.setInputType(InputType.TYPE_NULL);
-        etTime.setOnClickListener(new View.OnClickListener() {
+        Button et = findViewById(R.id.timebtn);
+
+        et.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -69,7 +77,7 @@ public class AddDetailsActivity extends AppCompatActivity {
 
 
 
-        Button addEventBtn = findViewById(R.id.add);
+        Button addEventBtn = findViewById(R.id.addBtn);
         addEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,38 +115,28 @@ public class AddDetailsActivity extends AppCompatActivity {
                     else{
                         dayofweek = Calendar.FRIDAY;
                     }
+                    calendar = Calendar.getInstance();
+                    calendar.set(Calendar.HOUR, hour);
+                    calendar.set(Calendar.MINUTE, min);
+                    calendar.set(Calendar.SECOND, 0);
+                    calendar.set(Calendar.MILLISECOND, 0);
+
 
 
                     scheduleRef.setValue(new Event(moduleName, className, time));
-                    Intent intent = new Intent(AddDetailsActivity.this, Notification.class);
-                    intent.putExtra("NotificationID", 1);
-                    intent.putExtra("mod", moduleName);
-                    intent.putExtra("class", className);
-                    PendingIntent alarmIntent = PendingIntent.getBroadcast(AddDetailsActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-                    AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-                    switch(view.getId()){
-                        case R.id.addsched:
-                            int h = hour;
-                            int m = min;
+                    setAlarm();
 
-                            Calendar starttime = Calendar.getInstance();
-                            starttime.set(Calendar.DAY_OF_WEEK, dayofweek);
-                            starttime.set(Calendar.HOUR_OF_DAY, h);
-                            starttime.set(Calendar.MINUTE, m);
-                            starttime.set(Calendar.SECOND, 0);
-                            long alarmStartTime = starttime.getTimeInMillis();
-
-                            alarm.set(AlarmManager.RTC_WAKEUP, alarmStartTime, alarmIntent);
-                    }
                     finish();
                 }
 
 
             }
+
+
         });
 
 
-        Button cancelBtn = findViewById(R.id.cancel);
+        Button cancelBtn = findViewById(R.id.cancelbtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,6 +144,29 @@ public class AddDetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void setAlarm() {
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this,alarmreciever.class);
+        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        Toast.makeText(this, "Alarm set", Toast.LENGTH_SHORT).show();
+
+
+    }
+    private void createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O){
+            CharSequence name = "Splannerreminderchannel";
+            String description = "Channel For Alarm Manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("Splanner", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
     }
 
 }

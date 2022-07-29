@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#D56565"
-    tools:context=".Timetable">
+    >
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -19,53 +20,81 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#EAB361"
+                android:background="@drawable/button_color"
+                android:padding="5dp"
                 android:text="Monday"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#9365E8"
+                android:background="@drawable/tues_buttoncolor"
+                android:padding="5dp"
                 android:text="Tuesday"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/wed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#3F5CB3"
+                android:background="@drawable/wed_button"
+                android:padding="5dp"
                 android:text="Wednesday"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#54C8AD"
+                android:background="@drawable/thurs_button"
+                android:padding="5dp"
                 android:text="Thursday"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="#5BBCE3"
+                android:background="@drawable/friday_button"
+                android:padding="5dp"
                 android:text="Friday"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp" />
+
+
+
         </LinearLayout>
 
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/week"
+        android:layout_width="409dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="-660dp"
+        android:layout_marginBottom="-100dp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView3" />
     <Button
         android:id="@+id/addsched"
         android:layout_width="55dp"
@@ -77,16 +106,27 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintStart_toEndOf="@+id/recyclerView" />
 
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="408dp"
-        android:layout_height="692dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="407dp"
+        android:layout_height="621dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageButton
+        android:id="@+id/journalbtn"
+        android:layout_width="55dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="-80dp"
+        android:layout_marginBottom="-470dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_baseline_subject_24"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintStart_toEndOf="@+id/recyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

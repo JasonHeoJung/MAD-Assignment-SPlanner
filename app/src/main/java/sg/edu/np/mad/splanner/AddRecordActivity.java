@@ -36,7 +36,7 @@ public class AddRecordActivity extends AppCompatActivity {
         addName = findViewById(R.id.addName);
         addComment = findViewById(R.id.addComment);
         addRecordbtn = findViewById(R.id.addRecord);
-        cancelBtn = findViewById(R.id.cancel);
+        cancelBtn = findViewById(R.id.cancelbtn);
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
 
