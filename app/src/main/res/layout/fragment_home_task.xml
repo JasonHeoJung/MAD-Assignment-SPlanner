@@ -107,7 +107,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:visibility="gone"
-                android:text="@string/no_data_available" />
+                android:text="@string/no_task_available" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"

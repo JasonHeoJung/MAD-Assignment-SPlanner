@@ -50,7 +50,7 @@ public class HomeTaskFragment extends Fragment {
 
     private ArrayList<String> taskIds;
     private ArrayList<Task> tasks;
-    private Map<String,Task> taskMap;
+    private Map<String, Task> taskMap;
     private TaskAdapter adapter;
     private int completedTask;
 

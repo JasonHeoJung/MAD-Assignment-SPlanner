@@ -64,7 +64,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/HomeTaskRV"
+                android:id="@+id/HomeScheduleRV"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:clipToPadding="false"
@@ -81,7 +81,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:visibility="gone"
-                android:text="@string/no_data_available" />
+                android:text="@string/no_schedule_available" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
