@@ -14,7 +14,7 @@ Natalie - Did the layout of the timetable
 Justin - Did the database of the whole application
 Guo heng - Did the layout of to do list and subject tracker
 Yo ming - Did the layout, part of the database of homepage, the 
-functions for Timer and The navigation bar to move between fragment activities
+functions for Timer and The navigation bar to move between fragment activities || New: Expanded Timer to make records, a nested fragment for Timer, named 'Timer' and 'Records'
 Jason - did the layout for profile page, login and sign up page
 
 User guides:
@@ -28,5 +28,8 @@ User guides:
 8. Click on Timer icon
 9. Enter in your timing
 10. Click start
-11. Click on the Exam Tracker icon
-12. Enter your grades for your subjects
+11 Click Finish
+12. Enter Record
+13. Swipe left, view records
+14. Click on the Exam Tracker icon
+15. Enter your grades for your subjects
