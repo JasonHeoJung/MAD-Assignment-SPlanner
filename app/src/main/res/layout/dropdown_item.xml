@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
+
+<!--<TextView-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:id="@+id/textViewDays"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:padding="15dp"-->
+<!--    android:text="TextView"-->
+<!--    android:textColor="@color/black"-->
+<!--    android:textSize="18sp"-->
+<!--    android:textStyle="bold" />-->
+
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/textViewDays"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp"
-    android:text="TextView"
-    android:textColor="@color/black"
-    android:textSize="18sp"
-    android:textStyle="bold" />
-=======
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/textView2"
+    android:id="@+id/textView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="TextView"
     android:padding="16dp"
     android:textColor="@color/black"
     android:textStyle="bold"/>
->>>>>>> main
