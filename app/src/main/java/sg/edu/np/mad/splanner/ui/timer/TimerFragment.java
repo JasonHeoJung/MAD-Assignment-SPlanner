@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner;
+package sg.edu.np.mad.splanner.ui.timer;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,9 +22,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import sg.edu.np.mad.splanner.AddRecordActivity;
 import sg.edu.np.mad.splanner.R;
-import sg.edu.np.mad.splanner.RecordDetailsActivity;
 import sg.edu.np.mad.splanner.databinding.FragmentTimerBinding;
 
 public class TimerFragment extends Fragment {
@@ -59,7 +57,7 @@ public class TimerFragment extends Fragment {
         mButtonStartPause = root.findViewById(R.id.button_start_pause);
         mFinish = root.findViewById(R.id.finishBtn);
         mButtonReset = root.findViewById(R.id.button_reset);
-        mRecord = root.findViewById(R.id.button_recordList);
+        /*mRecord = root.findViewById(R.id.button_recordList);*/
         mTimesUp = root.findViewById(R.id.times_up_text);
 
 

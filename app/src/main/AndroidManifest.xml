@@ -14,10 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner" >
         <activity
-            android:name=".MusicPlayerActivity"
+            android:name=".ui.timer.AddRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".MusicList"
+            android:name=".ui.profile.EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.music.MusicPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.music.MusicList"
             android:exported="false" />
         <activity
             android:name=".ui.home.schedule.journal.Edit_Journal"

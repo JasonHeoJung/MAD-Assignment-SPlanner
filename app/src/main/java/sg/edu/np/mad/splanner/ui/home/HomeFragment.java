@@ -2,6 +2,7 @@ package sg.edu.np.mad.splanner.ui.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeBinding;
+import sg.edu.np.mad.splanner.ui.home.music.MusicList;
 import sg.edu.np.mad.splanner.ui.home.schedule.HomeAddScheduleFragment;
 import sg.edu.np.mad.splanner.ui.home.schedule.HomeScheduleFragment;
 import sg.edu.np.mad.splanner.ui.home.task.HomeAddTaskFragment;
@@ -54,6 +57,16 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 return gesture.onTouchEvent(event);
+            }
+        });
+
+
+        ImageView music = root.findViewById(R.id.music);
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent musicPage = new Intent(getActivity().getApplicationContext(), MusicList.class);
+                startActivity(musicPage);
             }
         });
 

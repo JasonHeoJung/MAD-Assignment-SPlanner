@@ -21,15 +21,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import sg.edu.np.mad.splanner.EditProfile;
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.StartActivity;
-import sg.edu.np.mad.splanner.UserProfile;
 import sg.edu.np.mad.splanner.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
@@ -83,7 +80,7 @@ public class ProfileFragment extends Fragment {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent editIntent = new Intent(v.getContext(), EditProfile.class);
+                Intent editIntent = new Intent(requireActivity(), EditProfile.class);
                 editIntent.putExtra("name", auth.getCurrentUser().getDisplayName());
                 editIntent.putExtra("email", auth.getCurrentUser().getEmail());
                 startActivity(editIntent);
@@ -93,7 +90,7 @@ public class ProfileFragment extends Fragment {
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText resetPassword = new EditText(v.getContext());
+                final EditText resetPassword = new EditText(requireActivity());
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password ?");
                 passwordResetDialog.setMessage("Enter New Password > 6 Characters");

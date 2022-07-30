@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_timer"
-        android:name="sg.edu.np.mad.splanner.ui.timer.TimerFragment"
+        android:name="sg.edu.np.mad.splanner.ui.timer.MainTimerFragment"
         android:label="@string/title_timer"
-        tools:layout="@layout/fragment_timer" />
+        tools:layout="@layout/fragment_main_timer" />
 
     <fragment
         android:id="@+id/navigation_examtracker"
