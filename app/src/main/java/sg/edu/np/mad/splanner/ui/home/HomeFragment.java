@@ -1,6 +1,8 @@
 package sg.edu.np.mad.splanner.ui.home;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -28,7 +30,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
 
-    private int pagerValue = 0;
+    private int pagerValue;
     GestureDetector gesture;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -40,6 +42,9 @@ public class HomeFragment extends Fragment {
 
         TextView home_username = root.findViewById(R.id.home_username);
         home_username.setText(auth.getCurrentUser() != null ? auth.getCurrentUser().getDisplayName() : "username not found");
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("SPlanner", Context.MODE_PRIVATE);
+        pagerValue = prefs.getInt("pager", 0);
 
         FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.HomeFrame, pagerValue == 0 ? new HomeTaskFragment() : new HomeScheduleFragment()).commit();
@@ -108,6 +113,10 @@ public class HomeFragment extends Fragment {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.HomeFrame, new HomeScheduleFragment()).commit();
             pagerValue = 1;
+
+            SharedPreferences.Editor editor = requireActivity().getSharedPreferences("SPlanner", Context.MODE_PRIVATE).edit();
+            editor.putInt("pager", pagerValue);
+            editor.apply();
         }
     }
 
@@ -116,6 +125,10 @@ public class HomeFragment extends Fragment {
             FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.HomeFrame, new HomeTaskFragment()).commit();
             pagerValue = 0;
+
+            SharedPreferences.Editor editor = requireActivity().getSharedPreferences("SPlanner", Context.MODE_PRIVATE).edit();
+            editor.putInt("pager", pagerValue);
+            editor.apply();
         }
     }
 }
