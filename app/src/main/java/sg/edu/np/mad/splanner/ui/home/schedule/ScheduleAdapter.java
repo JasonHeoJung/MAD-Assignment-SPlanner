@@ -50,35 +50,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
         String time = schedule.get(position).getTiming();
         String location = schedule.get(position).getLocation();
 
-
         holder.event_title.setText(name);
         holder.event_time.setText(time);
         holder.event_time.setText(location);
-
-//        holder.task_status.setChecked(tasks.get(position).getStatus());
-//        holder.task_view.setOnClickListener(v -> {
-//            holder.task_status.toggle();
-//            reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").child(taskIds.get(position)).child("status").setValue(holder.task_status.isChecked());
-//
-//            ProgressBar task_progress_bar = fragmentActivity.findViewById(R.id.task_progress_bar);
-//            TextView task_progress_text = fragmentActivity.findViewById(R.id.task_progress_text);
-//
-//            int change = holder.task_status.isChecked() ? 1 : -1;
-//
-//            task_progress_text.setText(String.format("%s out of %d tasks done", String.valueOf(Math.round(task_progress_bar.getProgress() / (double)100 * taskIds.size() + change)), taskIds.size()));
-//            task_progress_bar.setProgress((int) Math.round((task_progress_bar.getProgress() / (double)100 * taskIds.size() + change) * 100 / taskIds.size()));
-//        });
-//        holder.task_status.setOnClickListener(v -> {
-//            reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("tasks").child(taskIds.get(position)).child("status").setValue(holder.task_status.isChecked());
-//
-//            ProgressBar task_progress_bar = fragmentActivity.findViewById(R.id.task_progress_bar);
-//            TextView task_progress_text = fragmentActivity.findViewById(R.id.task_progress_text);
-//
-//            int change = holder.task_status.isChecked() ? 1 : -1;
-//
-//            task_progress_text.setText(String.format("%s out of %d tasks done", String.valueOf(Math.round(task_progress_bar.getProgress() / (double)100 * taskIds.size() + change)), taskIds.size()));
-//            task_progress_bar.setProgress((int) Math.round((task_progress_bar.getProgress() / (double)100 * taskIds.size() + change) * 100 / taskIds.size()));
-//        });
     }
 
     @Override
