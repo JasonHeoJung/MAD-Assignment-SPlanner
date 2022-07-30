@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -109,6 +110,7 @@ public class HomeTaskFragment extends Fragment {
                 task_progress_text.setText(String.format("%d out of %d tasks done", completedTask, taskIds.size()));
                 task_progress_bar.setProgress(taskIds.size() == 0 ? 100 : (completedTask * 100)/taskIds.size());
 
+                Toast.makeText(requireActivity(), "Deleted Task", Toast.LENGTH_SHORT).show();
                 setAdapter();
             }
         });
