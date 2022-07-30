@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner;
+package sg.edu.np.mad.splanner.ui.home.schedule.journal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -35,6 +35,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import sg.edu.np.mad.splanner.R;
+import sg.edu.np.mad.splanner.journal;
+
 public class journalRecyclerView extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference reference;
@@ -44,16 +47,15 @@ public class journalRecyclerView extends AppCompatActivity {
     private ArrayList<String> journalid;
     private ArrayList<journal> journallist;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_recycler_view);
+
         journallist = new ArrayList<>();
         recyclerView = findViewById(R.id.journalList);
 
         FloatingActionButton addjournal = findViewById(R.id.journal_fab);
-
         addjournal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +63,16 @@ public class journalRecyclerView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
+
         reference.child(auth.getCurrentUser().getUid()).child("journal").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 journallist = new ArrayList<>();
                 journalid = new ArrayList<>();
+
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
                     journalid.add(eventSnapshot.getKey());
                     journallist.add(eventSnapshot.getValue(journal.class));
@@ -81,10 +85,9 @@ public class journalRecyclerView extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-    });
+        });
 
     }
-
 
     @Override
     public void onStart(){
@@ -93,9 +96,9 @@ public class journalRecyclerView extends AppCompatActivity {
         reference.child(auth.getCurrentUser().getUid()).child("journal").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 journallist = new ArrayList<>();
                 journalid = new ArrayList<>();
+
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
                     journalid.add(eventSnapshot.getKey());
                     journallist.add(eventSnapshot.getValue(journal.class));
@@ -109,11 +112,9 @@ public class journalRecyclerView extends AppCompatActivity {
 
             }
         });
-
-
     }
-    private void setAdapter(){
 
+    private void setAdapter(){
         Log.v("JOURNAL SIZE", String.valueOf(journallist.size()));
         journal_Adapter adapter = new journal_Adapter(journallist, journalid, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -123,8 +124,6 @@ public class journalRecyclerView extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
     }
-
-
 
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
@@ -145,5 +144,4 @@ public class journalRecyclerView extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     };
-
 }
