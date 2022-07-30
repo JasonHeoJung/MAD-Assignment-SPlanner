@@ -2,9 +2,12 @@ package sg.edu.np.mad.splanner;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,81 +30,53 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.LogRecord;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicViewHolder> {
-    private FirebaseAuth auth;
-    private DatabaseReference reference;
-    private ArrayList<String> musicIds;
-    private ArrayList<Music> musicList;
-    MediaPlayer mediaPlayer;
-    Activity activity;
+    ArrayList<AudioModel> songsList;
+    Context context;
 
-    public MusicAdapter(ArrayList<String> musicIds, ArrayList<Music> musicList, Activity activity) {
-        this.musicIds = musicIds;
-        this.musicList = musicList;
-        this.activity = activity;
+    public MusicAdapter(ArrayList<AudioModel> songsList, Context context) {
+        this.songsList = songsList;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public MusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        auth = FirebaseAuth.getInstance();
-        reference = FirebaseDatabase.getInstance().getReference("users");
-
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_music_recycler_view, parent, false);
+        View item = LayoutInflater.from(context).inflate(R.layout.activity_music_recycler_view, parent, false);
         return new MusicViewHolder(item);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MusicViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        String name = musicList.get(position).getName();
-        mediaPlayer = new MediaPlayer();
+        AudioModel songData = songsList.get(position);
 
-        holder.songName.setText(name);
-        holder.play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = musicList.get(position).getUrl();
-                Log.v("URL Retrieve", url);
+        holder.songName.setText(songData.getTitle());
 
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        if (MyMediaPlayer.currentIndex == position) {
+            holder.songName.setTextColor(Color.parseColor("#E86579"));
+        }
+        else {
+            holder.songName.setTextColor(Color.parseColor("#000000"));
+        }
 
-                try {
-                    mediaPlayer.setDataSource(url);
-
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(activity.getApplicationContext(), "Audio started playing...", Toast.LENGTH_SHORT).show();
-            }
-        });
-        holder.pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
-                }
-                else {
-                    Toast.makeText(activity.getApplicationContext(), "Audio has not played", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        holder.remove.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reference.child(auth.getCurrentUser().getUid()).child("songs").child(musicIds.get(position)).removeValue();
+                MyMediaPlayer.getInstance().reset();
+                MyMediaPlayer.currentIndex = position;
+                Intent intent = new Intent(context, MusicPlayerActivity.class);
+                intent.putExtra("LIST", songsList);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return musicIds.size();
+        return songsList.size();
     }
 }
