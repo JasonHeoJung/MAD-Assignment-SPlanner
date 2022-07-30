@@ -32,7 +32,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
-import sg.edu.np.mad.splanner.AddDetailsActivity;
 import sg.edu.np.mad.splanner.Event;
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.ui.home.schedule.journal.journalRecyclerView;

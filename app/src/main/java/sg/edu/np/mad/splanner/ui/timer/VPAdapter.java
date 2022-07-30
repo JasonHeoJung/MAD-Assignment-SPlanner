@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner;
+package sg.edu.np.mad.splanner.ui.timer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -10,7 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class alarmreciever extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent){
-        Intent i = new Intent(context, ScheduleFragment.class);
+        Intent i = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,i,0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Splanner")

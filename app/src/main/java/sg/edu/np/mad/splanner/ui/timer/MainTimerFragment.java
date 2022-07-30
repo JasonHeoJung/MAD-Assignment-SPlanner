@@ -12,7 +12,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import sg.edu.np.mad.splanner.R;
-import sg.edu.np.mad.splanner.VPAdapter;
 
 
 public class MainTimerFragment extends Fragment {

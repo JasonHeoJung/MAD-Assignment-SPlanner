@@ -10,8 +10,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,9 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import sg.edu.np.mad.splanner.R;
 import sg.edu.np.mad.splanner.Score;
-import sg.edu.np.mad.splanner.TrackerFragment;
 import sg.edu.np.mad.splanner.databinding.FragmentAddMarksBinding;
-import sg.edu.np.mad.splanner.databinding.FragmentExamtrackerBinding;
 
 public class AddMarksFragment extends Fragment {
 
