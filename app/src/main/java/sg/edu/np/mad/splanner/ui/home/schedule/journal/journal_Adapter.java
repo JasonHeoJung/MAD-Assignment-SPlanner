@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +44,7 @@ public class journal_Adapter extends RecyclerView.Adapter<journalRecyclerviewhol
     public void onBindViewHolder(@NonNull final journalRecyclerviewholder holder, @SuppressLint("RecyclerView") final int position) {
         Log.v("JOURNAL SIZE", journallist.get(position).getTitle());
         holder.title.setText(journallist.get(position).getTitle());
-        holder.rl.setOnClickListener(new View.OnClickListener() {
+        holder.cl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(activity, journal_des.class);
