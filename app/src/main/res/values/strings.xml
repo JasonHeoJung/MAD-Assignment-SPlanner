@@ -28,4 +28,13 @@
     <string name="welcome_msg">Welcome Back,</string>
     <string name="no_task_available">No task available</string>
     <string name="no_schedule_available">No schedule available</string>
+    <string name="no_more_classes_for_today">No more classes for today</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
 </resources>
