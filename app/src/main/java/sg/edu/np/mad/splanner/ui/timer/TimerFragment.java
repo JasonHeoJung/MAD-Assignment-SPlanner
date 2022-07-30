@@ -1,4 +1,4 @@
-package sg.edu.np.mad.splanner.ui.timer;
+package sg.edu.np.mad.splanner;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,7 +36,7 @@ public class TimerFragment extends Fragment {
     private Button mButtonSet;
     private Button mButtonStartPause;
     private Button mButtonReset;
-    private Button mRecord;
+    /*private Button mRecord;*/
     private Button mFinish;
     private TextView mTimesUp;
     private String inputTime;
@@ -115,13 +115,13 @@ public class TimerFragment extends Fragment {
             }
         });
 
-        mRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), RecordDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        mRecord.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), RecordDetailsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         mFinish.setOnClickListener(new View.OnClickListener() {
             @Override

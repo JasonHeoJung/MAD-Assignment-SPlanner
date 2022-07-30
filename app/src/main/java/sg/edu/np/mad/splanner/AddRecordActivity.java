@@ -74,6 +74,7 @@ public class AddRecordActivity extends AppCompatActivity {
                     }
                 }
                 else {
+                    Toast.makeText(AddRecordActivity.this, "Time Recorded", Toast.LENGTH_SHORT).show();
                     DatabaseReference tasksRef = reference.child(auth.getCurrentUser().getUid()).child("records").push();
                     tasksRef.setValue(new Record(getName, getComment, String.valueOf(timeValue), String.valueOf(timeUsed)));
                     finish();
