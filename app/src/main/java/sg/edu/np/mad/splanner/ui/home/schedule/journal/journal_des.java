@@ -62,15 +62,5 @@ public class journal_des extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Button cancel = findViewById(R.id.backButn);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(journal_des.this, journalRecyclerView.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }

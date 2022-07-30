@@ -55,14 +55,5 @@ public class AddJournal extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Button cancel = findViewById(R.id.cancelbtn);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AddJournal.this, journalRecyclerView.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 }
