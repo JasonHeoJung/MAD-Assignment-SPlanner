@@ -149,6 +149,7 @@ public class HomeTaskFragment extends Fragment {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
 
                     Collections.sort(taskIds, (t1, t2) -> {
+                        if (taskMap.get(t1).getDueDate().equals("") || taskMap.get(t2).getDueDate().equals("")) return -1;
                         try {
                             return format.parse(taskMap.get(t1).getDueDate()).compareTo(format.parse(taskMap.get(t2).getDueDate()));
                         } catch (ParseException e) {
