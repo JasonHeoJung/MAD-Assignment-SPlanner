@@ -70,6 +70,7 @@ public class HomeScheduleFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        loadData();
     }
 
     @Override
@@ -115,26 +116,26 @@ public class HomeScheduleFragment extends Fragment {
                 }
 
                 if (snapshot.hasChildren()) {
-                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-
-                    Collections.sort(scheduleIds, (t1, t2) -> {
-                        try {
-                            return format.parse(scheduleMap.get(t1).getTiming()).compareTo(format.parse(scheduleMap.get(t2).getTiming()));
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        return 0;
-                    });
-
-                    Collections.sort(schedule, (t1, t2) -> {
-                        if (t1.getTiming().equals("") || t2.getTiming().equals("")) return -1;
-                        try {
-                            return format.parse(t1.getTiming()).compareTo(format.parse(t2.getTiming()));
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        return 0;
-                    });
+//                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+//
+//                    Collections.sort(scheduleIds, (t1, t2) -> {
+//                        try {
+//                            return format.parse(scheduleMap.get(t1).getTiming()).compareTo(format.parse(scheduleMap.get(t2).getTiming()));
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                        return 0;
+//                    });
+//
+//                    Collections.sort(schedule, (t1, t2) -> {
+//                        if (t1.getTiming().equals("") || t2.getTiming().equals("")) return -1;
+//                        try {
+//                            return format.parse(t1.getTiming()).compareTo(format.parse(t2.getTiming()));
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+//                        return 0;
+//                    });
 
                     recyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
