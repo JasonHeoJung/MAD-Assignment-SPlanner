@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="412dp"
+            android:layout_height="118dp"
+            android:background="#67B7D1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="333dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="92dp"
+            android:background="@drawable/custom_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/profName"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="115dp"
+                android:layout_marginTop="14dp"
+                android:text="Your Name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/profEmail"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profName"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="116dp"
+                android:layout_marginTop="3dp"
+                android:text="Your Email"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/Edit"
+            android:layout_width="331dp"
+            android:layout_height="49dp"
+            android:backgroundTint="#67B7D1"
+            android:text="Edit Profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
+
+        <Button
+            android:id="@+id/resetPass"
+            android:layout_width="331dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#67B7D1"
+            android:text="Reset Password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Edit" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="331dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#67B7D1"
+            android:text="Logout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resetPass" />
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imageView2"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/user_avatar"
+            app:civ_border_width="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
