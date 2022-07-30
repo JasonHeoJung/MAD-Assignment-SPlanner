@@ -25,12 +25,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
     private DatabaseReference reference;
     ArrayList<String> scheduleIds;
     ArrayList<Event> schedule;
-    FragmentActivity fragmentActivity;
 
-    public ScheduleAdapter(ArrayList<String> scheduleIds, ArrayList<Event> schedule, FragmentActivity fragmentActivity) {
+    public ScheduleAdapter(ArrayList<String> scheduleIds, ArrayList<Event> schedule) {
         this.scheduleIds = scheduleIds;
         this.schedule = schedule;
-        this.fragmentActivity = fragmentActivity;
     }
 
     @NonNull
@@ -52,7 +50,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
         holder.event_title.setText(name);
         holder.event_time.setText(time);
-        holder.event_time.setText(location);
+        holder.event_location.setText(location);
     }
 
     @Override

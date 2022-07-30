@@ -1,22 +1,15 @@
 package sg.edu.np.mad.splanner.ui.home.schedule;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -29,17 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Calendar;
-
 import sg.edu.np.mad.splanner.Event;
 import sg.edu.np.mad.splanner.R;
-import sg.edu.np.mad.splanner.Task;
 import sg.edu.np.mad.splanner.databinding.FragmentHomeAddScheduleBinding;
 import sg.edu.np.mad.splanner.ui.home.HomeFragment;
 
-public class HomeAddScheduleFragment extends Fragment {
-
-    private FragmentHomeAddScheduleBinding binding;
+public class HomeAddScheduleActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private DatabaseReference reference;
@@ -48,9 +36,10 @@ public class HomeAddScheduleFragment extends Fragment {
     private Button addEvent;
 
     @SuppressLint("ClickableViewAccessibility")
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeAddScheduleBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_add_schedule);
 
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
@@ -66,25 +55,25 @@ public class HomeAddScheduleFragment extends Fragment {
             event_timing.setText(String.format("%02d:%02d", newHour, newMinute));
         });
 
-        event_title = root.findViewById(R.id.etEventTitle);
+        event_title = findViewById(R.id.etEventTitle);
 
-        event_day = root.findViewById(R.id.etEventDay);
+        event_day = findViewById(R.id.etEventDay);
 
         String[] days = getResources().getStringArray(R.array.days);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(requireContext(), R.layout.dropdown_item, days);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.dropdown_item, days);
         event_day.setAdapter(arrayAdapter);
         event_day.setInputType(InputType.TYPE_NULL);
         event_day.setKeyListener(null);
 
-        event_location = root.findViewById(R.id.etEventLocation);
-        event_timing = root.findViewById(R.id.etEventTime);
+        event_location = findViewById(R.id.etEventLocation);
+        event_timing = findViewById(R.id.etEventTime);
 
         event_timing.setInputType(InputType.TYPE_NULL);
         event_timing.setKeyListener(null);
 
         event_timing.setOnTouchListener((view, motionEvent) -> {
             if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-                picker.show(getParentFragmentManager(), "tag");
+                picker.show(getSupportFragmentManager(), "tag");
             }
             return false;
         });
@@ -94,7 +83,7 @@ public class HomeAddScheduleFragment extends Fragment {
         event_location.addTextChangedListener(tw);
         event_timing.addTextChangedListener(tw);
 
-        addEvent = root.findViewById(R.id.add_event_btn);
+        addEvent = findViewById(R.id.add_event_btn2);
         addEvent.setOnClickListener(view -> {
             String name = event_title.getText().toString();
             String day = event_day.getText().toString();
@@ -104,28 +93,16 @@ public class HomeAddScheduleFragment extends Fragment {
             DatabaseReference scheduleRef = reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("schedule").child(day).push();
             scheduleRef.setValue(new Event(name, location, startTime));
 
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
-            transaction.commit();
+            finish();
         });
 
-        ImageView cancelBtn = root.findViewById(R.id.home_add_schedule_close_img);
+        ImageView cancelBtn = findViewById(R.id.home_add_schedule_close_img2);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment_activity_main, new HomeFragment());
-                transaction.commit();
+                finish();
             }
         });
-
-        return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
     }
 
     TextWatcher tw = new TextWatcher() {

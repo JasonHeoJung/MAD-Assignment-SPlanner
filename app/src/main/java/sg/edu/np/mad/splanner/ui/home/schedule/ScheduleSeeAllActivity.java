@@ -1,22 +1,20 @@
 package sg.edu.np.mad.splanner.ui.home.schedule;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,59 +26,107 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
+import sg.edu.np.mad.splanner.AddDetailsActivity;
 import sg.edu.np.mad.splanner.Event;
 import sg.edu.np.mad.splanner.R;
-import sg.edu.np.mad.splanner.databinding.FragmentHomeScheduleBinding;
+import sg.edu.np.mad.splanner.ui.home.schedule.journal.journalRecyclerView;
 
-public class HomeScheduleFragment extends Fragment {
-
-    private FragmentHomeScheduleBinding binding;
-    private RecyclerView recyclerView;
-    private View nextLesson;
-    private TextView emptyView;
-    private TextView nextEmptyView;
-    private TextView schedule_seeall;
-
+public class ScheduleSeeAllActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference reference;
+    private RecyclerView recyclerView;
+    private TextView emptyView;
+    private TextView textweek;
+    Calendar calender = Calendar.getInstance();
+    private String nowday;
 
     private ArrayList<String> scheduleIds;
     private ArrayList<Event> schedule;
     private Map<String, Event> scheduleMap;
     private ScheduleAdapter adapter;
-    private String day;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentHomeScheduleBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_schedule_see_all);
+
+        switch (calender.get(Calendar.DAY_OF_WEEK)) {
+            case Calendar.TUESDAY:
+                nowday = "Tuesday";
+                break;
+            case Calendar.WEDNESDAY:
+                nowday = "Wednesday";
+                break;
+            case Calendar.THURSDAY:
+                nowday = "Thursday";
+                break;
+            case Calendar.FRIDAY:
+                nowday = "Friday";
+                break;
+            default:
+                nowday = "Monday";
+                break;
+        }
 
         auth = FirebaseAuth.getInstance();
         reference = FirebaseDatabase.getInstance().getReference("users");
-        recyclerView = root.findViewById(R.id.HomeScheduleRV);
-        nextLesson = root.findViewById(R.id.nextLessonCell);
-        emptyView = root.findViewById(R.id.empty_view);
-        nextEmptyView = root.findViewById(R.id.empty_view_nextlesson);
-        schedule_seeall = root.findViewById(R.id.schedule_seeall);
 
-        schedule_seeall.setOnClickListener(new View.OnClickListener() {
+        recyclerView = findViewById(R.id.recyclerView);
+        emptyView = findViewById(R.id.empty_view);
+
+        textweek = findViewById(R.id.week);
+
+        Button mon = findViewById(R.id.monday);
+        Button tues = findViewById(R.id.tuesday);
+        Button weds = findViewById(R.id.wed);
+        Button thurs = findViewById(R.id.thursday);
+        Button fri = findViewById(R.id.friday);
+
+        ArrayList<Button> dayList = new ArrayList<>(Arrays.asList(mon, tues, weds, thurs, fri));
+
+        for (Button day : dayList) {
+            day.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    nowday = day.getText().toString();
+                    textweek.setText(nowday);
+
+                    loadData();
+                }
+            });
+        }
+
+        FloatingActionButton journalbtn = findViewById(R.id.schedule_fab2);
+        journalbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(requireActivity(), ScheduleSeeAllActivity.class));
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), journalRecyclerView.class);
+                startActivity(intent);
             }
         });
 
-        return root;
+        FloatingActionButton addScheduleBtn = findViewById(R.id.schedule_fab);
+        addScheduleBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeAddScheduleActivity.class);
+                intent.putExtra("day", nowday);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
+        textweek.setText(nowday);
         loadData();
 
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -92,7 +138,7 @@ public class HomeScheduleFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 loadData();
-                reference.child(auth.getCurrentUser().getUid()).child("schedule").child(day).child(scheduleIds.get(viewHolder.getAdapterPosition())).removeValue();
+                reference.child(auth.getCurrentUser().getUid()).child("schedule").child(nowday).child(scheduleIds.get(viewHolder.getAdapterPosition())).removeValue();
 
                 scheduleMap.remove(scheduleIds.get(viewHolder.getAdapterPosition()));
                 scheduleIds.remove(viewHolder.getAdapterPosition());
@@ -109,7 +155,7 @@ public class HomeScheduleFragment extends Fragment {
                     emptyView.setVisibility(View.VISIBLE);
                 }
 
-                Toast.makeText(requireActivity(), "Deleted Schedule", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Deleted Schedule", Toast.LENGTH_SHORT).show();
                 setAdapter();
             }
         });
@@ -117,39 +163,12 @@ public class HomeScheduleFragment extends Fragment {
         helper.attachToRecyclerView(recyclerView);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
     private void loadData() {
-        switch (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
-            case Calendar.MONDAY:
-                day = "Monday";
-                break;
-            case Calendar.TUESDAY:
-                day = "Tuesday";
-                break;
-            case Calendar.WEDNESDAY:
-                day = "Wednesday";
-                break;
-            case Calendar.THURSDAY:
-                day = "Thursday";
-                break;
-            case Calendar.FRIDAY:
-                day = "Friday";
-                break;
-            default:
-                day = "Weekend";
-                break;
-        }
-
-        reference.child(auth.getCurrentUser() != null ? auth.getCurrentUser().getUid() : "").child("schedule").child(day).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(auth.getCurrentUser().getUid()).child("schedule").child(nowday).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                scheduleIds = new ArrayList<>();
                 schedule = new ArrayList<>();
+                scheduleIds = new ArrayList<>();
                 scheduleMap = new TreeMap<String, Event>();
 
                 if (snapshot.hasChildren()) {
@@ -184,48 +203,11 @@ public class HomeScheduleFragment extends Fragment {
 
                     recyclerView.setVisibility(View.VISIBLE);
                     emptyView.setVisibility(View.GONE);
-
-                    Event nextSchedule = null;
-                    String[] current_time = String.valueOf(Calendar.getInstance().getTime()).split(" ")[3].split(":");
-                    String current_hour = current_time[0];
-                    String current_min = current_time[1];
-
-                    for (int i = 0; i < scheduleIds.size(); i++) {
-                        if (day.equals("Weekend")) break;
-                        try {
-                            if (formatter.parse(current_hour + ":" + current_min).compareTo(formatter.parse(schedule.get(i).getTiming())) <= 0) {
-                                nextSchedule = schedule.get(i);
-                                break;
-                            }
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    if (nextSchedule != null) {
-                        TextView nextTitle = nextLesson.findViewById(R.id.event_title);
-                        TextView nextLocation = nextLesson.findViewById(R.id.event_location);
-                        TextView nextTime = nextLesson.findViewById(R.id.event_time);
-
-                        nextTitle.setText(nextSchedule.getModule());
-                        nextLocation.setText(nextSchedule.getLocation());
-                        nextTime.setText(nextSchedule.getTiming());
-
-                        nextLesson.setVisibility(View.VISIBLE);
-                        nextEmptyView.setVisibility(View.GONE);
-                    }
-                    else {
-                        nextLesson.setVisibility(View.GONE);
-                        nextEmptyView.setVisibility(View.VISIBLE);
-                    }
-
                     setAdapter();
                 }
                 else {
                     recyclerView.setVisibility(View.GONE);
                     emptyView.setVisibility(View.VISIBLE);
-                    nextLesson.setVisibility(View.GONE);
-                    nextEmptyView.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -238,7 +220,7 @@ public class HomeScheduleFragment extends Fragment {
 
     private void setAdapter() {
         adapter = new ScheduleAdapter(scheduleIds, schedule);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
