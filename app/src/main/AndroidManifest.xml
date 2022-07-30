@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner" >
         <activity
+            android:name=".ui.home.schedule.journal.Edit_Journal"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.journal_des"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.HomeAddScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.AddJournal"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.journalRecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".AddDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.ScheduleSeeAllActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartActivity"
             android:exported="true" >
             <intent-filter>
