@@ -1,61 +1,43 @@
 package sg.edu.np.mad.splanner;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
+import sg.edu.np.mad.splanner.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNav);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new HomeFragment()).commit();
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_home,R.id.navigation_timer, R.id.navigation_examtracker, R.id.navigation_profile)
+                .build();
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new
-            BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuitem) {
-
-                    Fragment fragment = null;
-                    switch (menuitem.getItemId()){
-                        case R.id.home:
-                            fragment = new HomeFragment();
-                            break;
-
-                        case  R.id.schedule:
-                            fragment = new ScheduleFragment();
-                            break;
-
-                        case  R.id.list:
-                            fragment = new ToDoListFragment();
-                            break;
-
-                        case  R.id.tracker:
-                            fragment = new TrackerFragment();
-                            break;
-
-                        case  R.id.timer:
-                            fragment = new TimerFragment();
-                            break;
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-
-                    return true;
-                }
-            };
 }

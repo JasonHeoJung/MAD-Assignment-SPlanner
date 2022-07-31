@@ -11,4 +11,31 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_journal">Journal</string>
+    <string name="select">Select Item</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_edit_journal">Edit_Journal</string>
+    <string name="title_timer">Timer</string>
+    <string name="title_examtracker">Exam Tracker</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_home">Home</string>
+    <string name="welcome_msg">Welcome Back,</string>
+    <string name="no_task_available">No task available</string>
+    <string name="no_schedule_available">No schedule available</string>
+    <string name="no_more_classes_for_today">No more classes for today</string>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
 </resources>

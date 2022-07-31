@@ -6,144 +6,147 @@
     android:layout_height="match_parent"
     tools:context=".AddRecordActivity">
 
-    <EditText
-        android:id="@+id/addName"
-        android:layout_width="341dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Name"
+    <Button
+        android:id="@+id/cancelbtn"
+        android:layout_width="339dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="69dp"
+        android:backgroundTint="#C34F4F"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/addRecord" />
 
     <EditText
         android:id="@+id/addComment"
-        android:layout_width="341dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="242dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="25dp"
         android:ems="10"
-        android:maxLength="30"
+        android:hint="Description (Max 30 Char)"
         android:inputType="textPersonName"
-        android:hint="Description (Max 30 Characters)"
+        android:maxLength="30"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="342dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
-        android:text="Record Name"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="336dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:textColor="#000000"
-        android:text="Comment"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/addName" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="173dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="12dp"
-        android:text="Time Taken"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addComment" />
-
-    <TextView
-        android:id="@+id/timeTaken"
-        android:layout_width="171dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="30dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/addRecord"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="173dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="30dp"
-        android:text="Time Set"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/addComment" />
-
-    <TextView
-        android:id="@+id/timeSet"
-        android:layout_width="171dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="208dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="30dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/addRecord"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/addRecord"
         android:layout_width="339dp"
         android:layout_height="72dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="36dp"
         android:backgroundTint="#42AF80"
         android:text="Add Record"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeSet" />
+
+    <TextView
+        android:id="@+id/timeSet"
+        android:layout_width="171dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="71dp"
+        android:layout_marginBottom="57dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/addRecord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/timeTaken" />
 
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="339dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="48dp"
-        android:backgroundTint="#C34F4F"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="134dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="52dp"
+        android:text="Time Taken :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintEnd_toStartOf="@+id/timeTaken"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addRecord"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintTop_toBottomOf="@+id/addComment" />
+
+    <EditText
+        android:id="@+id/addName"
+        android:layout_width="171dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="71dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/addComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="135dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="57dp"
+        android:text="Time Set :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/addRecord"
+        app:layout_constraintEnd_toStartOf="@+id/timeSet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/timeTaken"
+        android:layout_width="171dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="55dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/timeSet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/addComment" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="135dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginBottom="27dp"
+        android:text="Record Name :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/addComment"
+        app:layout_constraintEnd_toStartOf="@+id/addName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="109dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="46dp"
+        android:text="Comment :"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/addComment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

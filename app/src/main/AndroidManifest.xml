@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sg.edu.np.mad.splanner" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,16 +14,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SPlanner" >
         <activity
-            android:name=".RecordDetailsActivity"
+            android:name=".ui.timer.AddRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".AddRecordActivity"
+            android:name=".ui.profile.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".EditProfile"
+            android:name=".ui.home.music.MusicPlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".UserProfile"
+            android:name=".ui.home.music.MusicList"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.Edit_Journal"
+            android:exported="false"
+            android:label="@string/title_activity_edit_journal"
+            android:theme="@style/Theme.SPlanner.NoActionBar" />
+        <activity
+            android:name=".ui.home.schedule.journal.journal_des"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.HomeAddScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.AddJournal"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.journal.journalRecyclerView"
+            android:exported="false" />
+        <activity
+            android:name=".AddDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.schedule.ScheduleSeeAllActivity"
             android:exported="false" />
         <activity
             android:name=".StartActivity"
@@ -37,9 +64,6 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".AddDetailsActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
@@ -48,8 +72,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver android:name=".alarmreciever"/>
+        <receiver
+            android:name=".alarmreciever"
+            android:exported="false" />
     </application>
 
 </manifest>
