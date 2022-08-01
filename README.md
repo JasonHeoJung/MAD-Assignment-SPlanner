@@ -51,7 +51,10 @@ work.
    
 * Yo ming
   * Did the layout, part of the database of homepage, the functions for Timer and The navigation bar to move between fragment activities 
-  * New: Expanded Timer to make records, a nested fragment for Timer, named 'Timer' and 'Records' **(\*New\*)**
+* New:
+  * Imporved UI/UX of timer
+  * Expanded Timer to make records
+  * Added a nested fragment view pager for Timer, named 'Timer' and 'Records' **(\*New\*)**
 
 * Jason
 * UI/UX
