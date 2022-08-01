@@ -60,7 +60,7 @@ work.
 
 * Database
   * Setting up of FirebaseStorage to store profile picture images
-  * Implementation of [Picasso][2] to make profile pictures circular when displayed.
+  * Implementation of [Picasso][2] to download images from FirebaseStorage and cache it in the app to allow for easy displaying.
   
 [1]: https://github.com/lopspower/CircularImageView "Circular ImageView"
 [2]: https://github.com/square/picasso "Picasso"
