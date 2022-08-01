@@ -54,14 +54,15 @@ work.
   * New: Improved UI/UX of timer, Expanded Timer to make records, Added a nested fragment view pager for Timer, named 'Timer' and 'Records' **(\*New\*)**
 
 * Jason
-* UI/UX
-  * Layout for profile page, login and sign up page
-  * Implementation of [Circular ImageView][1] to make profile pictures circular when displayed.
-
-* Database
-  * Setting up of FirebaseStorage to store profile picture images
-  * Implementation of [Picasso][2] to download images from FirebaseStorage and cache it in the app to allow for easy displaying.
-  
+  * Edit Profile: Changing of Password, Changing of Profile Image, Changing of Username.
+  * Login Page: Forgot Password Email.
+  * UI/UX
+   * Layout for profile page, login and sign up page
+   * Implementation of [Circular ImageView][1] to make profile pictures circular when displayed.
+  * Database
+   * Setting up of FirebaseStorage to store profile picture images
+   * Implementation of [Picasso][2] to download images from FirebaseStorage and cache it in the app to allow for easy displaying.
+   
 [1]: https://github.com/lopspower/CircularImageView "Circular ImageView"
 [2]: https://github.com/square/picasso "Picasso"
 
