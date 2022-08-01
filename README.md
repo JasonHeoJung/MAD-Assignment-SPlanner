@@ -50,7 +50,7 @@ work.
       of the song, users can adjust the seek bar to go to the part of the song that they like. After a song has finished
       playing it will automatically play the next song just like a playlist. **(\*New\*)**
     * Improvements of the previous two features:
-      When adding task in to do list, the due date now uses date picker, When adding grade in subject tracker, the grade now
+      When adding grade in subject tracker, the grade now
       uses a dropdown list, also added a remove button for each of the subjects, also added back the weakest subject feature,
       and made the UI look nicer for the subject tracker.
 
