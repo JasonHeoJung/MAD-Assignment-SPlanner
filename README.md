@@ -28,8 +28,11 @@ work.
 ## Contributions
 
 * Natalie
-  * Did the layout of the timetable. I have learned how to combined both horizontal scroll view and recycler view in one page. Sorted the list according to timing, added a delete swipe motion as well.  
-  * Did the journal. Learned how to add new table in the database. Learned how to edit the database, and also did swipe to delete motion as well.
+* UI/UX
+  * Did the layout of the timetable. I have learned how to combined both horizontal scroll view and recycler view in one page. Sorted the list according to timing, added a delete swipe motion as well. 
+
+* Database
+  * Did the journal. Learned how to add new table in the database. Learned how to edit the database, and also did swipe to delete motion as well. **(\*New\*)**
   
 * Justin
   * Did the database of the whole application
@@ -51,7 +54,11 @@ work.
   * New: Expanded Timer to make records, a nested fragment for Timer, named 'Timer' and 'Records' **(\*New\*)**
 
 * Jason
+* UI/UX
   * did the layout for profile page, login and sign up page
+
+* Database
+  * Firebase storage : 
 
 # User guides:
 
